@@ -33,6 +33,7 @@ const LanguageSelector: React.FC = () => {
 
     // Auto-translate based on IP (only run once)
     const runAutoTranslate = async () => {
+      /* API servisleri geçici olarak devre dışı bırakıldı
       if (!localStorage.getItem('lang_detected') && !document.cookie.includes('googtrans=')) {
         try {
           const res = await fetch('https://get.geojs.io/v1/ip/country.json');
@@ -52,6 +53,7 @@ const LanguageSelector: React.FC = () => {
           localStorage.setItem('lang_detected', '1');
         }
       }
+      */
     };
     
     runAutoTranslate();

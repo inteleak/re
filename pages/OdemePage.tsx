@@ -64,6 +64,7 @@ const OdemePage: React.FC = () => {
     }
 
     try {
+        /* API servisleri geçici olarak devre dışı bırakıldı
         const stripePublishableKey = 'pk_test_51SKsLYI4ME4m3TObzFaF8ziHO363fD5UlJYkdloFUIEuXHWLo7888QK64vzChAIRtW7LAKIPfRSIHZVoDEj3H9QX00CmmSgdlQ';
         const stripe = Stripe(stripePublishableKey);
 
@@ -96,6 +97,12 @@ const OdemePage: React.FC = () => {
             alert(`Ödeme başlatılamadı: ${error.message}`);
             setIsLoading(false);
         }
+        */
+        
+        // Mock that the payment service is offline
+        alert("API ve ödeme altyapısı servisleri şimdilik pasife alınmıştır. Ödeme işlemi gerçekleştirilemiyor.");
+        setIsLoading(false);
+        
     } catch (error) {
         console.error("Ödeme işlemi başlatılırken hata:", error);
         alert('Ödeme işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.');
