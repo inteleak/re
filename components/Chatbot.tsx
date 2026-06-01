@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from '@google/genai';
+import React, { useState, useRef, useEffect } from "react";
+import { GoogleGenAI } from "@google/genai";
 
 const systemInstruction = `You are Mortanas, an AI-powered digital assistant and automation system. Your goal is to answer user questions based on the following information. Be helpful, concise, and professional. Respond in Turkish.
 
@@ -907,261 +907,311 @@ Cevap: Evet, marka dili, ürün ve hizmetler, hedef kitleye özel otomasyonlar i
 `;
 
 const WhatsAppButton: React.FC = () => {
-    const phoneNumber = "905540118888";
-    const message = encodeURIComponent("Merhaba, hizmetleriniz hakkında bilgi almak istiyorum.");
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  const phoneNumber = "905540118888";
+  const message = encodeURIComponent(
+    "Merhaba, hizmetleriniz hakkında bilgi almak istiyorum.",
+  );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
-    return (
-        <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group"
-            aria-label="WhatsApp ile İletişime Geçin"
-        >
-            <div className="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
-                <i className="fab fa-whatsapp text-4xl"></i>
-            </div>
-            <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                WhatsApp Destek
-            </span>
-        </a>
-    );
+  return (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative group"
+      aria-label="WhatsApp ile İletişime Geçin"
+    >
+      <div className="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
+        <i className="fab fa-whatsapp text-4xl"></i>
+      </div>
+      <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+        WhatsApp Destek
+      </span>
+    </a>
+  );
 };
 
 const InstagramButton: React.FC = () => {
-    const instagramUrl = "https://instagram.com/mortanascompany";
+  const instagramUrl = "https://instagram.com/mortanascompany";
 
-    return (
-        <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group"
-            aria-label="Instagram'da Bizi Takip Edin"
-        >
-            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
-                <i className="fab fa-instagram text-4xl"></i>
-            </div>
-            <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                Bizi Takip Edin
-            </span>
-        </a>
-    );
+  return (
+    <a
+      href={instagramUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative group"
+      aria-label="Instagram'da Bizi Takip Edin"
+    >
+      <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
+        <i className="fab fa-instagram text-4xl"></i>
+      </div>
+      <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+        Bizi Takip Edin
+      </span>
+    </a>
+  );
 };
 
-
 const IframeChatbot: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const chatbotUrl = "https://asistan-453604928185.us-west1.run.app/";
+  const [isOpen, setIsOpen] = useState(false);
+  const chatbotUrl = "https://asistan-453604928185.us-west1.run.app/";
 
-    const toggleChat = async () => {
-        if (isOpen) {
-            setIsOpen(false);
-            return;
-        }
+  const toggleChat = async () => {
+    if (isOpen) {
+      setIsOpen(false);
+      return;
+    }
 
-        const requestPermissionAndOpen = async () => {
-            try {
-                // This will trigger the browser's permission prompt.
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                // Immediately stop the track to turn off the microphone indicator.
-                stream.getTracks().forEach(track => track.stop());
-                
-                // Permission was granted, so open the chat.
-                setIsOpen(true);
-            } catch (err) {
-                // This catch block handles cases where the user denies the prompt in real-time.
-                console.error("Microphone access denied by user:", err);
-            }
-        };
+    const requestPermissionAndOpen = async () => {
+      try {
+        // This will trigger the browser's permission prompt.
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
+        // Immediately stop the track to turn off the microphone indicator.
+        stream.getTracks().forEach((track) => track.stop());
 
-        // Use the Permissions API for a better UX if it's available.
-        if (navigator.permissions && navigator.permissions.query) {
-            try {
-                const permissionStatus = await navigator.permissions.query({ name: 'microphone' as PermissionName });
-                
-                if (permissionStatus.state === 'denied') {
-                    // If permission is already denied, we can't re-prompt. Guide the user instead.
-                    alert("Mikrofon Erişimi Reddedildi.\n\nBu uygulamanın ses özelliklerini kullanmak için lütfen tarayıcınızın site ayarlarından mikrofon izinlerini etkinleştirin. Ayarları değiştirdikten sonra sayfayı yenilemeniz gerekebilir.");
-                    return;
-                }
-                
-                // If state is 'granted' or 'prompt', `getUserMedia` will work as expected.
-                await requestPermissionAndOpen();
-
-            } catch (err) {
-                console.error("Permissions API error, falling back to standard request:", err);
-                // Fallback for browsers with quirky Permissions API implementations.
-                await requestPermissionAndOpen();
-            }
-        } else {
-            // Fallback for older browsers that don't support the Permissions API.
-            await requestPermissionAndOpen();
-        }
+        // Permission was granted, so open the chat.
+        setIsOpen(true);
+      } catch (err) {
+        // This catch block handles cases where the user denies the prompt in real-time.
+        console.error("Microphone access denied by user:", err);
+      }
     };
 
-    return (
-        <div className="relative">
-            {/* Chatbot Window (IFrame Modal) */}
-            <div 
-                className={`absolute bottom-full right-0 mb-4 w-80 md:w-96 bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ease-in-out transform origin-bottom-right ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}
-                style={{ height: '70vh', minHeight: '400px', maxHeight: '600px' }}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="chatbot-heading"
-            >
-                {/* Header */}
-                <div className="flex-shrink-0 bg-gradient-to-r from-slate-900 to-gray-800 text-white px-5 py-4 rounded-t-2xl flex justify-between items-center">
-                    <div className="flex items-center space-x-3">
-                        <div className="relative">
-                            <i className="fas fa-headset text-2xl"></i>
-                            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-gray-800"></span>
-                        </div>
-                        <div>
-                            <h2 id="chatbot-heading" className="text-lg font-bold">Sesli Asistan</h2>
-                        </div>
-                    </div>
-                    <button onClick={toggleChat} className="text-gray-300 hover:text-white transition-colors" aria-label="Sohbeti kapat">
-                        <i className="fas fa-times text-xl"></i>
-                    </button>
-                </div>
+    // Use the Permissions API for a better UX if it's available.
+    if (navigator.permissions && navigator.permissions.query) {
+      try {
+        const permissionStatus = await navigator.permissions.query({
+          name: "microphone" as PermissionName,
+        });
 
-                {/* IFrame Content */}
-                <div className="flex-1 bg-gray-100 rounded-b-2xl overflow-hidden">
-                    {isOpen && (
-                         <iframe
-                            src={chatbotUrl}
-                            title="Mortanas Asistan Chatbot"
-                            style={{ width: '100%', height: '100%', border: 'none' }}
-                            allow="microphone"
-                        />
-                    )}
-                </div>
+        if (permissionStatus.state === "denied") {
+          // If permission is already denied, we can't re-prompt. Guide the user instead.
+          alert(
+            "Mikrofon Erişimi Reddedildi.\n\nBu uygulamanın ses özelliklerini kullanmak için lütfen tarayıcınızın site ayarlarından mikrofon izinlerini etkinleştirin. Ayarları değiştirdikten sonra sayfayı yenilemeniz gerekebilir.",
+          );
+          return;
+        }
+
+        // If state is 'granted' or 'prompt', `getUserMedia` will work as expected.
+        await requestPermissionAndOpen();
+      } catch (err) {
+        console.error(
+          "Permissions API error, falling back to standard request:",
+          err,
+        );
+        // Fallback for browsers with quirky Permissions API implementations.
+        await requestPermissionAndOpen();
+      }
+    } else {
+      // Fallback for older browsers that don't support the Permissions API.
+      await requestPermissionAndOpen();
+    }
+  };
+
+  return (
+    <div className="relative">
+      {/* Chatbot Window (IFrame Modal) */}
+      <div
+        className={`absolute bottom-full right-0 mb-4 w-80 md:w-96 bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ease-in-out transform origin-bottom-right ${isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+        style={{ height: "70vh", minHeight: "400px", maxHeight: "600px" }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="chatbot-heading"
+      >
+        {/* Header */}
+        <div className="flex-shrink-0 bg-gradient-to-r from-slate-900 to-gray-800 text-white px-5 py-4 rounded-t-2xl flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <i className="fas fa-headset text-2xl"></i>
+              <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-gray-800"></span>
             </div>
-
-            {/* Toggle Button */}
-            <button
-                onClick={toggleChat}
-                className="w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform group"
-                aria-label="Sesli asistanı aç"
-                aria-expanded={isOpen}
-            >
-                <i className={`fas ${isOpen ? 'fa-times' : 'fa-headset'} text-2xl transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
-                 <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Sesli Asistan
-                </span>
-            </button>
+            <div>
+              <h2 id="chatbot-heading" className="text-lg font-bold">
+                Sesli Asistan
+              </h2>
+            </div>
+          </div>
+          <button
+            onClick={toggleChat}
+            className="text-gray-300 hover:text-white transition-colors"
+            aria-label="Sohbeti kapat"
+          >
+            <i className="fas fa-times text-xl"></i>
+          </button>
         </div>
-    );
+
+        {/* IFrame Content */}
+        <div className="flex-1 bg-gray-100 rounded-b-2xl overflow-hidden">
+          {isOpen && (
+            <iframe
+              src={chatbotUrl}
+              title="Mortanas Asistan Chatbot"
+              style={{ width: "100%", height: "100%", border: "none" }}
+              allow="microphone"
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Toggle Button */}
+      <button
+        onClick={toggleChat}
+        className="w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform group"
+        aria-label="Sesli asistanı aç"
+        aria-expanded={isOpen}
+      >
+        <i
+          className={`fas ${isOpen ? "fa-times" : "fa-headset"} text-2xl transition-all duration-300 ${isOpen ? "rotate-180" : ""}`}
+        ></i>
+        <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          Sesli Asistan
+        </span>
+      </button>
+    </div>
+  );
 };
 
 const TextChatbot: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<{ role: 'user' | 'model', text: string }[]>([
-        { role: 'model', text: 'Merhaba! Ben Mortanas AI. Size nasıl yardımcı olabilirim?' }
-    ]);
-    const [input, setInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<
+    { role: "user" | "model"; text: string }[]
+  >([
+    {
+      role: "model",
+      text: "Merhaba! Ben Mortanas AI. Size nasıl yardımcı olabilirim?",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! }); // Vercel'de hata vermemesi için yorum satırına alındı
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-    useEffect(scrollToBottom, [messages]);
+  useEffect(scrollToBottom, [messages]);
 
-    const toggleChat = () => setIsOpen(!isOpen);
+  const toggleChat = () => setIsOpen(!isOpen);
 
-    const handleSend = async () => {
-        if (!input.trim() || isLoading) return;
-        
-        const userMessage = { role: 'user' as const, text: input };
-        setMessages(prev => [...prev, userMessage]);
-        setInput('');
-        setIsLoading(true);
+  const handleSend = async () => {
+    if (!input.trim() || isLoading) return;
 
-        try {
+    const userMessage = { role: "user" as const, text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      // API servisleri geçici olarak devre dışı
+      /*
             const chat = ai.chats.create({ model: 'gemini-2.5-flash', config: { systemInstruction } });
             const response = await chat.sendMessage({ message: input });
-
             const text = response.text;
-            setMessages(prev => [...prev, { role: 'model', text }]);
-        } catch (error) {
-            console.error("Gemini API error:", error);
-            setMessages(prev => [...prev, { role: 'model', text: 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.' }]);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+            */
+      const text =
+        "Sistem güncellemeleri nedeniyle şu an yanıt veremiyorum. Lütfen iletişim kanallarımızdan bize ulaşın.";
 
-    return (
-        <div className="relative">
-             <div 
-                className={`absolute bottom-full right-0 mb-4 w-80 md:w-96 bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ease-in-out transform origin-bottom-right ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}
-                style={{ height: '70vh', minHeight: '400px', maxHeight: '600px' }}
-                role="dialog"
-            >
-                <div className="flex-shrink-0 bg-gradient-to-r from-slate-900 to-gray-800 text-white px-5 py-4 rounded-t-2xl flex justify-between items-center">
-                    <div className="flex items-center space-x-3">
-                        <i className="fas fa-robot text-2xl"></i>
-                        <h2 className="text-lg font-bold">Mortanas AI</h2>
-                    </div>
-                    <button onClick={toggleChat} className="text-gray-300 hover:text-white" aria-label="Sohbeti kapat">
-                        <i className="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div className="flex-1 p-4 overflow-y-auto bg-gray-100 space-y-4">
-                    {messages.map((msg, index) => (
-                        <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-xs md:max-w-md px-4 py-2 rounded-2xl ${msg.role === 'user' ? 'bg-blue-600 text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
-                                {msg.text}
-                            </div>
-                        </div>
-                    ))}
-                    {isLoading && (
-                         <div className="flex justify-start">
-                            <div className="px-4 py-2 rounded-2xl bg-gray-200 text-gray-800 rounded-bl-none">
-                                <div className="flex items-center space-x-1">
-                                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                                    <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    <div ref={messagesEndRef} />
-                </div>
-                <div className="flex-shrink-0 p-3 border-t bg-white rounded-b-2xl">
-                    <div className="flex items-center space-x-2">
-                        <input
-                            type="text"
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                            placeholder="Bir mesaj yazın..."
-                            className="flex-1 w-full px-4 py-2 bg-gray-100 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <button onClick={handleSend} disabled={isLoading} className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 hover:bg-blue-700 disabled:bg-gray-400 transition-colors">
-                           <i className="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <button
-                onClick={toggleChat}
-                className="w-16 h-16 bg-gray-800 text-white rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform group"
-                aria-label="Metin sohbetini aç"
-                aria-expanded={isOpen}
-            >
-                <i className={`fas ${isOpen ? 'fa-times' : 'fa-comment-dots'} text-2xl transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
-                <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Yazılı Asistan
-                </span>
-            </button>
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { role: "model", text }]);
+        setIsLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error("Gemini API error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "model",
+          text: "Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.",
+        },
+      ]);
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="relative">
+      <div
+        className={`absolute bottom-full right-0 mb-4 w-80 md:w-96 bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 ease-in-out transform origin-bottom-right ${isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+        style={{ height: "70vh", minHeight: "400px", maxHeight: "600px" }}
+        role="dialog"
+      >
+        <div className="flex-shrink-0 bg-gradient-to-r from-slate-900 to-gray-800 text-white px-5 py-4 rounded-t-2xl flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <i className="fas fa-robot text-2xl"></i>
+            <h2 className="text-lg font-bold">Mortanas AI</h2>
+          </div>
+          <button
+            onClick={toggleChat}
+            className="text-gray-300 hover:text-white"
+            aria-label="Sohbeti kapat"
+          >
+            <i className="fas fa-times text-xl"></i>
+          </button>
         </div>
-    );
+        <div className="flex-1 p-4 overflow-y-auto bg-gray-100 space-y-4">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div
+                className={`max-w-xs md:max-w-md px-4 py-2 rounded-2xl ${msg.role === "user" ? "bg-blue-600 text-white rounded-br-none" : "bg-gray-200 text-gray-800 rounded-bl-none"}`}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="px-4 py-2 rounded-2xl bg-gray-200 text-gray-800 rounded-bl-none">
+                <div className="flex items-center space-x-1">
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                  <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+                </div>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className="flex-shrink-0 p-3 border-t bg-white rounded-b-2xl">
+          <div className="flex items-center space-x-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && handleSend()}
+              placeholder="Bir mesaj yazın..."
+              className="flex-1 w-full px-4 py-2 bg-gray-100 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleSend}
+              disabled={isLoading}
+              className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 hover:bg-blue-700 disabled:bg-gray-400 transition-colors"
+            >
+              <i className="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        onClick={toggleChat}
+        className="w-16 h-16 bg-gray-800 text-white rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform group"
+        aria-label="Metin sohbetini aç"
+        aria-expanded={isOpen}
+      >
+        <i
+          className={`fas ${isOpen ? "fa-times" : "fa-comment-dots"} text-2xl transition-all duration-300 ${isOpen ? "rotate-180" : ""}`}
+        ></i>
+        <span className="absolute -top-10 right-1/2 translate-x-1/2 px-3 py-1.5 text-sm font-semibold text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          Yazılı Asistan
+        </span>
+      </button>
+    </div>
+  );
 };
 
 const FloatingActionButtons: React.FC = () => {
