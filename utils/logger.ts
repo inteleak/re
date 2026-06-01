@@ -9,7 +9,6 @@ export interface LoginLog {
 
 export const logLoginAttempt = async (email: string, password: string, status: 'Başarılı' | 'Başarısız' | 'Engellendi'): Promise<void> => {
     let ipAddress = 'Bilinmiyor';
-    /* API servisleri geçici olarak devre dışı bırakıldı
     try {
         // NOTE: This uses a third-party service to get the IP. This may have privacy implications
         // and should be used with caution in a real-world application.
@@ -21,7 +20,6 @@ export const logLoginAttempt = async (email: string, password: string, status: '
     } catch (error) {
         console.error('IP adresi alınamadı:', error);
     }
-    */
 
     const newLog: LoginLog = {
         timestamp: new Date().toISOString(),

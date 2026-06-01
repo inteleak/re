@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 interface AiWebPricingSectionProps {
   planName: string;
   themeColor: 'blue' | 'green';
+  isCrm?: boolean;
 }
 
 const PricingCard: React.FC<{
@@ -15,10 +16,12 @@ const PricingCard: React.FC<{
     description: string;
     popular?: boolean;
     savings?: string;
+    features?: { text: string; detail: React.ReactNode; highlight?: boolean; negative?: boolean }[];
   };
   planName: string;
   theme: any;
-}> = ({ plan, planName, theme }) => {
+  isCrmPlan?: boolean;
+}> = ({ plan, planName, theme, isCrmPlan }) => {
     const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
     
     let priceForPayment = 0;
@@ -35,55 +38,59 @@ const PricingCard: React.FC<{
     }).toString();
 
     const cardClasses = plan.popular
-        ? `bg-slate-800 text-white rounded-2xl shadow-2xl transform lg:scale-105 ring-4 ${theme.ring} z-10`
-        : 'bg-slate-800/50 backdrop-blur-sm text-slate-200 rounded-2xl shadow-lg border border-slate-700';
+        ? `bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-indigo-900/50 backdrop-blur-2xl text-white rounded-2xl shadow-[0_0_30px_rgba(59,130,246,0.3)] transform lg:scale-105 border-2 border-indigo-400/50 z-10`
+        : `bg-gradient-to-br from-slate-950/70 via-slate-900/70 to-slate-950/70 backdrop-blur-xl text-slate-200 rounded-2xl shadow-lg border border-slate-700/50`;
     
     const buttonClasses = plan.popular
         ? `bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold hover:from-blue-600 hover:to-cyan-500`
         : `${theme.bg} ${theme.hoverBg} text-white font-semibold`;
 
     return (
-        <div className={`flex flex-col p-8 h-full relative ${cardClasses}`}>
+        <div className={`flex flex-col p-4 md:p-5 h-full relative ${cardClasses}`}>
             {plan.popular && (
-                <div className={`absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg`}>
-                    <i className="fas fa-star text-yellow-300 mr-2"></i>EN AVANTAJLI
+                <div className={`absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap`}>
+                    <i className="fas fa-star text-yellow-300 mr-1.5"></i>EN AVANTAJLI
                 </div>
             )}
-            <h3 className="text-2xl font-bold">{plan.title}</h3>
-            <p className={`mt-1 text-sm ${plan.popular ? 'text-slate-300' : 'text-slate-400'}`}>{plan.description}</p>
+            <h3 className="text-lg md:text-xl font-bold">{plan.title}</h3>
+            <p className={`mt-0 text-xs md:text-sm ${plan.popular ? 'text-slate-300' : 'text-slate-400'} min-h-[36px]`}>{plan.description}</p>
             
-            <div className="mt-6">
-                {plan.originalPrice && (
-                    <del className={`text-xl font-semibold ${plan.popular ? 'text-red-400' : 'text-red-400'}`}>
+            <div className="mt-2">
+                {plan.originalPrice ? (
+                    <del className={`text-xs font-semibold block leading-none ${plan.popular ? 'text-red-400' : 'text-red-400'}`}>
                         {usdFormatter.format(plan.originalPrice)}
                     </del>
-                )}
-                <p className="text-5xl font-extrabold text-white">
+                ) : <div className="h-[12px] block"></div>}
+                <p className="text-3xl md:text-4xl mt-1 font-extrabold text-white leading-none">
                     {usdFormatter.format(plan.price)}
-                    {plan.cycle !== 'lifetime' && <span className={`text-lg font-medium ${plan.popular ? 'text-slate-300' : 'text-slate-400'}`}> /aylık</span>}
+                    {plan.cycle !== 'lifetime' && <span className={`text-xs font-medium ${plan.popular ? 'text-slate-300' : 'text-slate-400'}`}> /ay</span>}
                 </p>
-                 {plan.savings && <p className={`text-sm mt-1 font-semibold ${theme.text}`}>{plan.savings}</p>}
+                 {plan.savings ? <p className={`text-[10px] md:text-xs mt-1 font-semibold ${theme.text} leading-none`}>{plan.savings}</p> : <div className="h-[14px] mt-1 block"></div>}
             </div>
 
-            <Link to={`/odeme?${paymentSearchParams}`} className={`mt-6 w-full text-center py-3 rounded-lg transition-all transform hover:scale-105 text-lg ${buttonClasses}`}>
+            <Link to={`/odeme?${paymentSearchParams}`} className={`mt-3 w-full text-center py-2.5 rounded-lg transition-all transform hover:-translate-y-0.5 text-xs md:text-sm font-bold ${buttonClasses}`}>
                 { plan.cycle === 'lifetime' ? 'Ömür Boyu Satın Al' : 'Aboneliği Başlat' }
             </Link>
+
+            {plan.features && plan.features.length > 0 && (
+                <div className={`mt-4 pt-3 border-t ${plan.popular ? 'border-indigo-500/20' : 'border-slate-700/50'}`}>
+                    <div className="space-y-1.5 md:space-y-2">
+                        {plan.features.map((f, i) => (
+                            <div key={i} className="flex justify-between items-center text-[10px] md:text-[11px] border-b border-white/5 pb-1 md:pb-1.5 last:border-0 last:pb-0">
+                                <span className="text-slate-400 font-medium">{f.text}</span>
+                                <span className={`font-semibold ${f.negative ? 'text-slate-500 text-[10px]' : (f.highlight ? theme.text : 'text-slate-200')}`}>{f.detail}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             
-            <div className={`mt-6 pt-6 border-t ${plan.popular ? 'border-slate-700' : 'border-slate-700'} text-left text-sm`}>
-                <p className="flex items-start">
-                    <i className="fas fa-check-circle text-green-400 mr-3 mt-1 flex-shrink-0"></i>
-                    <span>Tüm Yapay Zeka Web özelliklerine tam erişim.</span>
-                </p>
+            <div className={`mt-4 p-3 bg-slate-900/40 backdrop-blur-md rounded-xl border ${plan.popular ? 'border-indigo-500/30' : 'border-slate-700/50'} text-left md:text-center text-[10px] text-slate-300 space-y-1.5 shadow-inner`}>
+                <p className="leading-tight"><i className="fas fa-check-circle text-green-400 mr-1.5"></i><strong className="text-white">{isCrmPlan ? 'Tüm Yapay Zeka CRM' : 'Tüm Yapay Zeka Web'}</strong> özelliklerine tam erişim.</p>
                 {plan.cycle === 'lifetime' ? (
-                     <p className="flex items-start mt-2">
-                        <i className="fas fa-check-circle text-green-400 mr-3 mt-1 flex-shrink-0"></i>
-                        <span><strong className={theme.text}>Ömür boyu</strong> alan adı & hosting <strong className={theme.text}>ücretsiz</strong>.</span>
-                    </p>
+                     <p className="leading-tight"><i className="fas fa-check-circle text-green-400 mr-1.5"></i><strong className={theme.text}>Ömür boyu</strong> alan adı ve hosting <strong className={theme.text}>ücretsiz</strong>.</p>
                 ) : (
-                    <p className="flex items-start mt-2">
-                        <i className="fas fa-check-circle text-green-400 mr-3 mt-1 flex-shrink-0"></i>
-                        <span>Alan adı, hosting ve bakım abonelik süresince dahildir.</span>
-                    </p>
+                    <p className="leading-tight"><i className="fas fa-check-circle text-green-400 mr-1.5"></i>Alan adı, hosting ve bakım abonelik süresince <strong className="text-white">dahildir</strong>.</p>
                 )}
             </div>
         </div>
@@ -91,7 +98,8 @@ const PricingCard: React.FC<{
 };
 
 
-const AiWebPricingSection: React.FC<AiWebPricingSectionProps> = ({ planName, themeColor }) => {
+const AiWebPricingSection: React.FC<AiWebPricingSectionProps> = ({ planName, themeColor, isCrm }) => {
+    const isCrmPlan = isCrm || planName.toLowerCase().includes('crm') || planName.toLowerCase().includes('yönetimi');
     const [offerEndDate] = useState(() => new Date(Date.now() + 7 * 24 * 60 * 60 * 1000));
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -143,23 +151,42 @@ const AiWebPricingSection: React.FC<AiWebPricingSectionProps> = ({ planName, the
         {
             title: "Aylık Esnek Plan",
             cycle: 'monthly' as const,
-            price: 100,
+            price: 70,
             description: "Taahhütsüz, esnek başlangıç.",
+            features: [
+                { text: "Ödeme Periyodu", detail: "Aylık", highlight: false },
+                { text: "Hosting & Alan Adı", detail: "Dahil", highlight: false },
+                { text: "Sistem Güncellemeleri", detail: "Dahil", highlight: false },
+                { text: "Öncelikli Destek", detail: "Yok", highlight: false, negative: true },
+            ]
         },
         {
             title: "Yıllık Avantajlı Plan",
             cycle: 'annually' as const,
-            price: 70,
-            originalPrice: 100,
+            price: 50,
+            originalPrice: 70,
             description: "Uzun vadeli büyüme için en iyi değer.",
             popular: true,
-            savings: "Yıllık ödemede %30 tasarruf edin!",
+            savings: "Yıllık ödemede ~%30 tasarruf edin!",
+            features: [
+                { text: "Ödeme Periyodu", detail: "Yıllık", highlight: false },
+                { text: "Hosting & Alan Adı", detail: "Dahil", highlight: false },
+                { text: "Sistem Güncellemeleri", detail: "Dahil", highlight: false },
+                { text: "Öncelikli Destek", detail: "7/24 Dahil", highlight: true },
+            ]
         },
         {
             title: "Ömür Boyu Lisans",
             cycle: 'lifetime' as const,
-            price: 1500,
+            price: isCrmPlan ? 995 : 1250,
+            originalPrice: isCrmPlan ? 1250 : undefined,
             description: "Tek seferlik ödeme ile sonsuza dek sizin.",
+            features: [
+                { text: "Ödeme Periyodu", detail: "Tek Seferlik", highlight: true },
+                { text: "Hosting & Alan Adı", detail: "Ömür Boyu Ücretsiz", highlight: true },
+                { text: "Sistem Güncellemeleri", detail: "Ömür Boyu Dahil", highlight: true },
+                { text: "Öncelikli VIP Destek", detail: "Ömür Boyu VIP", highlight: true },
+            ]
         }
     ];
 
@@ -171,109 +198,112 @@ const AiWebPricingSection: React.FC<AiWebPricingSectionProps> = ({ planName, the
         { icon: "fas fa-headset", title: "7/24 Teknik Destek" },
         { icon: "fas fa-shield-alt", title: "Güvenli Altyapı (SSL)" },
     ];
-    
-    const comparisonFeatures = [
-        { feature: "Ödeme Periyodu", monthly: "Aylık", annually: "Yıllık", lifetime: "Tek Seferlik" },
-        { feature: "Toplam Tasarruf", monthly: "Standart Fiyat", annually: <span className="font-bold text-green-400">%30 İndirim</span>, lifetime: <span className="font-bold text-green-400">En Yüksek Değer</span> },
-        { feature: "Hosting & Alan Adı", monthly: "Dahil", annually: "Dahil", lifetime: <span className="font-bold">Ömür Boyu Ücretsiz</span> },
-        { feature: "Güncellemeler", monthly: "Dahil", annually: "Dahil", lifetime: "Ömür Boyu Dahil" },
-        { feature: "Öncelikli Destek", monthly: <i className="fas fa-times text-red-500"></i>, annually: <i className="fas fa-check text-green-400"></i>, lifetime: <i className="fas fa-check text-green-400"></i> },
-    ];
 
     return (
-        <section className={`bg-gradient-to-b ${currentTheme.gradient} rounded-2xl p-8 md:p-12 relative overflow-hidden shadow-2xl border border-slate-700`}>
-            <div className={`absolute top-0 right-0 -mt-16 -mr-16 w-48 h-48 ${currentTheme.accentBg} rounded-full opacity-30`}></div>
-            <div className={`absolute bottom-0 left-0 -mb-16 -ml-16 w-40 h-40 ${currentTheme.accentBg} rounded-full opacity-30`}></div>
-            
-            <div className="relative z-10">
-                <h2 className="text-3xl font-bold text-center text-white mb-2">İşletmeniz İçin En Uygun Plan</h2>
-                 <p className={`text-center ${currentTheme.text} font-semibold text-lg mb-4 animate-pulse`}>
-                    <i className="fas fa-fire mr-2"></i>Sınırlı Süreli Lansman Fiyatları<i className="fas fa-fire ml-2"></i>
-                </p>
-                <p className="text-center text-slate-300 max-w-2xl mx-auto mb-8">
-                    Esnek ödeme seçeneklerimizle dijital dönüşümünüzü bugün başlatın.
-                </p>
-
-                {/* Countdown Timer */}
-                <div className="max-w-xl mx-auto bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 mb-12 shadow-lg border border-slate-700">
-                    <p className="text-center font-semibold text-slate-200 mb-2">Bu Teklifin Sona Ermesine Kalan Süre:</p>
-                    <div className="flex justify-center items-center space-x-2 md:space-x-4 text-center">
-                        {isOfferActive ? (
-                            <>
-                                <div className="bg-slate-900 rounded-lg p-3 w-20 shadow-inner"><span className={`text-3xl font-bold ${currentTheme.text}`}>{String(timeLeft.days).padStart(2, '0')}</span><span className="block text-xs text-slate-400">Gün</span></div>
-                                <div className="bg-slate-900 rounded-lg p-3 w-20 shadow-inner"><span className={`text-3xl font-bold ${currentTheme.text}`}>{String(timeLeft.hours).padStart(2, '0')}</span><span className="block text-xs text-slate-400">Saat</span></div>
-                                <div className="bg-slate-900 rounded-lg p-3 w-20 shadow-inner"><span className={`text-3xl font-bold ${currentTheme.text}`}>{String(timeLeft.minutes).padStart(2, '0')}</span><span className="block text-xs text-slate-400">Dakika</span></div>
-                                <div className="bg-slate-900 rounded-lg p-3 w-20 shadow-inner"><span className={`text-3xl font-bold ${currentTheme.text}`}>{String(timeLeft.seconds).padStart(2, '0')}</span><span className="block text-xs text-slate-400">Saniye</span></div>
-                            </>
-                        ) : (
-                            <p className="text-xl font-bold text-red-400">Teklif Sona Erdi!</p>
-                        )}
-                    </div>
+        <div className="space-y-6 md:space-y-8 w-full max-w-7xl mx-auto">
+            {/* Pricing Cards Container */}
+            <div className="bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-950/90 backdrop-blur-2xl rounded-3xl p-6 md:p-8 lg:p-10 border border-slate-600/50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] relative overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] -z-10"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -z-10"></div>
+                
+                <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Abonelik <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Planları</span></h2>
+                    <p className="text-slate-400 text-sm">Şeffaf fiyatlandırma, gizli ücret yok.</p>
                 </div>
 
-                {/* Pricing Cards */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch mb-16">
+                <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch relative z-10 w-full">
                     {plans.map(plan => (
-                        <PricingCard key={plan.cycle} plan={plan} planName={planName} theme={currentTheme} />
+                        <PricingCard key={plan.cycle} plan={plan} planName={planName} theme={currentTheme} isCrmPlan={isCrmPlan} />
                     ))}
                 </div>
-                
-                {/* All Plans Include Section */}
-                <div className="mt-16">
-                    <h3 className="text-2xl font-bold text-center text-white mb-8">Tüm Planlara Dahil Olan Standart Özellikler</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center max-w-5xl mx-auto">
-                        {includedFeatures.map(feature => (
-                            <div key={feature.title} className="flex flex-col items-center">
-                                <div className={`h-16 w-16 rounded-2xl flex items-center justify-center mb-3 ${currentTheme.accentBg}`}>
-                                    <i className={`${feature.icon} text-2xl ${currentTheme.text}`}></i>
-                                </div>
-                                <p className="font-semibold text-slate-300 text-sm">{feature.title}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Comparison Table Section */}
-                <div className="mt-20">
-                    <h3 className="text-2xl font-bold text-center text-white mb-8">Plan Karşılaştırması</h3>
-                    <div className="max-w-4xl mx-auto bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-slate-700">
-                        <div className="hidden md:grid grid-cols-4 items-center font-bold text-slate-200 bg-slate-700/50 p-4 border-b border-slate-600">
-                            <div className="col-span-1">Özellik</div>
-                            <div className="col-span-1 text-center">Aylık Plan</div>
-                            <div className={`col-span-1 text-center ${currentTheme.text}`}>Yıllık Plan</div>
-                            <div className="col-span-1 text-center">Tek Seferlik</div>
-                        </div>
-                        {comparisonFeatures.map((item, index) => (
-                            <div key={index} className="grid grid-cols-2 md:grid-cols-4 items-center p-4 border-b border-slate-700 last:border-b-0">
-                                <div className="col-span-2 md:col-span-1 font-semibold text-slate-200">{item.feature}</div>
-                                <div className="col-span-1 text-right md:text-center text-slate-300"><span className="md:hidden font-bold mr-2">Aylık:</span>{item.monthly}</div>
-                                <div className={`col-span-1 text-right md:text-center text-slate-300`}><span className="md:hidden font-bold mr-2">Yıllık:</span>{item.annually}</div>
-                                <div className="col-span-2 mt-2 pt-2 border-t border-slate-700 md:border-t-0 md:mt-0 md:pt-0 md:col-span-1 text-right md:text-center text-slate-300"><span className="md:hidden font-bold mr-2">Tek Seferlik:</span>{item.lifetime}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-
-                {/* Final Demo CTA */}
-                <div className="text-center mt-20 pt-10 border-t border-slate-700">
-                     <h4 className="text-xl font-semibold text-slate-100">Satın Almadan Önce İncelemek İster misiniz?</h4>
-                     <p className="text-slate-400 mt-2 max-w-md mx-auto">
-                        Uzman ekibimizle canlı bir demo seansı planlayın ve yapay zeka web sitesinin potansiyelini ilk elden görün.
-                    </p>
-                    <a
-                        href={whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-6 bg-green-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-600 transition-all transform hover:scale-105 inline-flex items-center space-x-3"
-                    >
-                        <i className="fab fa-whatsapp text-2xl"></i>
-                        <span>WhatsApp'tan Demo Talep Et</span>
-                    </a>
-                </div>
-
             </div>
-        </section>
+
+            {/* Lower Information Section */}
+            <section className={`bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-950/90 backdrop-blur-3xl rounded-3xl p-5 md:p-6 lg:p-8 relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.5)] border border-slate-700/50 w-full max-w-7xl mx-auto`}>
+                <div className={`absolute -top-24 -right-24 w-64 h-64 ${currentTheme.accentBg} rounded-full blur-[80px] opacity-30 pointer-events-none`}></div>
+                <div className={`absolute -bottom-24 -left-24 w-64 h-64 ${currentTheme.accentBg} rounded-full blur-[80px] opacity-30 pointer-events-none`}></div>
+                
+                <div className="relative z-10 grid lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+                    
+                    {/* Left: Campaign & Countdown (Col span 4) */}
+                    <div className="lg:col-span-4 flex flex-col justify-center space-y-4 bg-slate-900/60 backdrop-blur-md rounded-2xl p-5 md:p-6 border border-slate-700/60 shadow-inner w-full h-full">
+                        <div className="text-center lg:text-left">
+                            <h2 className="text-lg md:text-xl font-bold text-white mb-1.5 leading-tight">İşletmenize Uygun Plan</h2>
+                            <p className={`text-[11px] md:text-xs flex items-center justify-center lg:justify-start ${currentTheme.text} font-semibold mb-2`}>
+                                <span className="relative flex h-2 w-2 mr-1.5 flex-shrink-0">
+                                  <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${currentTheme.bg} opacity-75`}></span>
+                                  <span className={`relative inline-flex rounded-full h-2 w-2 ${currentTheme.bg}`}></span>
+                                </span>
+                                Lansman Fiyatlarını Kaçırmayın
+                            </p>
+                            <p className="text-slate-400 text-[10.5px] md:text-[11px] leading-relaxed">
+                                Esnek ödeme seçeneklerimizle otelinizin dijital dönüşümünü bugün başlatın.
+                            </p>
+                        </div>
+
+                        <div className="pt-4 mt-auto border-t border-slate-700/50 flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <p className="font-semibold text-slate-300 text-[9px] md:text-[10px] uppercase tracking-wider mb-2">Teklifin Sona Ermesine:</p>
+                            <div className="flex space-x-2">
+                                {isOfferActive ? (
+                                    <>
+                                        <div className="bg-black/50 rounded-xl py-1.5 px-2.5 w-12 shadow-inner border border-white/5"><span className={`text-sm md:text-base font-bold ${currentTheme.text} block`}>{String(timeLeft.days).padStart(2, '0')}</span><span className="block text-[8px] uppercase tracking-wider text-slate-400 mt-0.5">Gün</span></div>
+                                        <div className="bg-black/50 rounded-xl py-1.5 px-2.5 w-12 shadow-inner border border-white/5"><span className={`text-sm md:text-base font-bold ${currentTheme.text} block`}>{String(timeLeft.hours).padStart(2, '0')}</span><span className="block text-[8px] uppercase tracking-wider text-slate-400 mt-0.5">Saat</span></div>
+                                        <div className="bg-black/50 rounded-xl py-1.5 px-2.5 w-12 shadow-inner border border-white/5"><span className={`text-sm md:text-base font-bold ${currentTheme.text} block`}>{String(timeLeft.minutes).padStart(2, '0')}</span><span className="block text-[8px] uppercase tracking-wider text-slate-400 mt-0.5">Dk</span></div>
+                                        <div className="bg-black/50 rounded-xl py-1.5 px-2.5 w-12 shadow-inner border border-white/5"><span className={`text-sm md:text-base font-bold ${currentTheme.text} block`}>{String(timeLeft.seconds).padStart(2, '0')}</span><span className="block text-[8px] uppercase tracking-wider text-slate-400 mt-0.5">Sn</span></div>
+                                    </>
+                                ) : (
+                                    <p className="text-xs font-bold text-red-500 m-0 bg-red-400/10 px-4 py-2 rounded-lg border border-red-400/20">Teklif Sona Erdi!</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Middle: Included Features (Col span 5) */}
+                    <div className="lg:col-span-5 flex flex-col justify-center w-full px-2 lg:px-4 py-2">
+                        <div className="flex items-center justify-center lg:justify-start space-x-2 mb-4">
+                            <i className="fas fa-gem text-indigo-400 text-sm"></i>
+                            <h3 className="text-sm md:text-base font-bold text-white tracking-wide">
+                                 Standart Özellikler
+                            </h3>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3 md:gap-4">
+                            {includedFeatures.map(feature => (
+                                <div key={feature.title} className="flex items-center space-x-3 bg-gradient-to-r from-slate-800/40 to-slate-900/40 backdrop-blur-md rounded-xl p-3 border border-slate-700/50 hover:border-indigo-500/30 transition-all duration-300 shadow-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] group">
+                                    <div className={`h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-slate-900/80 border border-slate-700/50 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/30 transition-all duration-300 shadow-inner`}>
+                                        <i className={`${feature.icon} text-sm ${currentTheme.text} group-hover:scale-110 transition-transform duration-300`}></i>
+                                    </div>
+                                    <p className="font-medium text-slate-300 text-[11px] md:text-xs leading-tight group-hover:text-white transition-colors duration-300">{feature.title}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right: Final Demo CTA (Col span 3) */}
+                    <div className="lg:col-span-3 flex flex-col justify-center items-center text-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/40 via-slate-900/60 to-slate-900/80 backdrop-blur-md rounded-2xl p-5 border border-indigo-500/20 shadow-lg w-full h-full relative overflow-hidden group">
+                         <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur-xl pointer-events-none"></div>
+                         
+                         <div className="h-12 w-12 rounded-full bg-indigo-500/20 flex items-center justify-center mb-3 border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]">
+                             <i className="fas fa-headset text-blue-400 text-xl"></i>
+                         </div>
+                         <h4 className="text-sm md:text-base font-bold text-white mb-1.5">İncelemek İster misiniz?</h4>
+                         <p className="text-slate-300 text-[10px] md:text-[11px] mb-5 leading-tight max-w-[180px]">
+                            Uzman ekibimizle canlı demo seansı planlayın.
+                        </p>
+                        <a
+                            href={whatsappLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2.5 text-[11px] md:text-xs w-full relative z-10 border border-indigo-400/20"
+                        >
+                            <i className="fab fa-whatsapp text-sm md:text-base"></i>
+                            <span>Canlı Demo Talep Et</span>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+        </div>
     );
 };
 

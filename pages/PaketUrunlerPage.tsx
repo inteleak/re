@@ -483,8 +483,6 @@ const PaketUrunlerPage: React.FC = () => {
                   <div className="mt-auto pt-3 pb-1 flex flex-col sm:flex-row gap-2 justify-center shrink-0 w-full">
                     <Link 
                       to={paket.automationSlug ? `/otomasyon/${paket.automationSlug}` : `/paket-detay/${categoryId}/${paket.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="w-full sm:flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 px-2 py-2 rounded-sm font-bold text-[11px] tracking-widest transition-all duration-300 uppercase shadow-md active:scale-95 text-center flex items-center justify-center"
                     >
                       Detaylı Bilgi

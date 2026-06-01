@@ -22,6 +22,10 @@ export const getPricingData = (): AutomationSolution[] => {
                     const merged = {
                         ...initial,
                         ...existing,
+                        pricingPlans: initial.pricingPlans,
+                        individualPricing: initial.individualPricing,
+                        corporatePricing: initial.corporatePricing,
+                        setupFee: initial.setupFee,
                         features: initial.features || existing.features,
                         benefits: initial.benefits || existing.benefits,
                         aiFeatures: initial.aiFeatures || existing.aiFeatures,

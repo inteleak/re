@@ -22,13 +22,13 @@ const Footer: React.FC = () => {
             </p>
             
             {/* Global Partners */}
-            <div className="mt-4 mb-2">
-                <h4 className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-2">Global Çözüm Ortaklarımız</h4>
-                <div className="flex items-center space-x-3 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpT2yFo4dqRb49LVVA26PHefmlvO4hymdLkw&s" alt="Meta" referrerPolicy="no-referrer" className="h-4 object-contain rounded-sm" />
-                    <img src="https://dhrp.com.au/wp-content/uploads/2023/07/microsoft-centered-logo.png" alt="Microsoft" referrerPolicy="no-referrer" className="h-4 object-contain rounded-sm" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/512px-OpenAI_Logo.svg.png" alt="OpenAI" referrerPolicy="no-referrer" className="h-4 object-contain brightness-200 invert" />
-                    <img src="https://thumbor.evrimagaci.org/5FtfjU15HF5k5b3fAQj4vN0g0bY=/2000x0/filters:quality(85)/old/content_media/9ab56bbe7fde8290e225d93c065efec2.jpg" alt="Google" referrerPolicy="no-referrer" className="h-4 object-contain rounded-sm" />
+            <div className="mt-5 mb-4">
+                <h4 className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-3">Global Çözüm Ortaklarımız</h4>
+                <div className="flex items-center space-x-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" className="h-3.5 object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" className="h-4 object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" className="h-4 object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-4 object-contain opacity-50 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert" />
                 </div>
             </div>
 
@@ -62,7 +62,11 @@ const Footer: React.FC = () => {
                     <li><a href="/kariyer" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fas fa-briefcase w-3.5 text-indigo-500/50"></i> Kariyer</a></li>
                     <li><a href="/gizlilik" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fas fa-shield-alt w-3.5 text-indigo-500/50"></i> Gizlilik Politikası</a></li>
                     <li><a href="/kosullar" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fas fa-file-contract w-3.5 text-indigo-500/50"></i> Kullanım Koşulları</a></li>
-                    <li><a href="mailto:info@mortanascompany.com" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-indigo-500/50"></i> İletişim Kur</a></li>
+                    <li><a href="mailto:info@mortanascompany.com" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-indigo-500/50"></i> info@mortanascompany.com</a></li>
+                    <li><a href="https://instagram.com/mortanascompany" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fab fa-instagram w-3.5 text-indigo-500/50"></i> @mortanascompany</a></li>
+                    <li><a href="https://twitter.com/mortanascompany" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fab fa-twitter w-3.5 text-indigo-500/50"></i> @mortanascompany</a></li>
+                    <li><a href="https://youtube.com/c/mortanascompany" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fab fa-youtube w-3.5 text-indigo-500/50"></i> Mortanas Company</a></li>
+                    <li><a href="https://linkedin.com/company/mortanascompany" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-indigo-400 transition-colors flex items-center"><i className="fab fa-linkedin w-3.5 text-indigo-500/50"></i> Mortanas Company</a></li>
                 </ul>
               </div>
             </div>
@@ -74,7 +78,13 @@ const Footer: React.FC = () => {
                     <li><a href="https://www.mortanasagency.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-globe w-3.5 text-purple-500/50"></i> mortanasagency.com</a></li>
                     <li><a href="/urunler" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-box-open w-3.5 text-purple-500/50"></i> Hizmetlerimiz</a></li>
                     <li><a href="/portfolyo" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-layer-group w-3.5 text-purple-500/50"></i> Portfolyo</a></li>
-                    <li><a href="mailto:info@mortanasagency.com" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-purple-500/50"></i> İletişim Kur</a></li>
+                    <li><a href="/referanslar" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-star w-3.5 text-purple-500/50"></i> Referanslarımız</a></li>
+                    <li><a href="/musterihikayeleri" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-comment-dots w-3.5 text-purple-500/50"></i> Müşteri Hikayeleri</a></li>
+                    <li><a href="mailto:info@mortanasagency.com" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-purple-500/50"></i> info@mortanasagency.com</a></li>
+                    <li><a href="https://instagram.com/mortanasagency" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fab fa-instagram w-3.5 text-purple-500/50"></i> @mortanasagency</a></li>
+                    <li><a href="https://twitter.com/mortanasagency" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fab fa-twitter w-3.5 text-purple-500/50"></i> @mortanasagency</a></li>
+                    <li><a href="https://youtube.com/c/mortanasagency" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fab fa-youtube w-3.5 text-purple-500/50"></i> Mortanas Agency</a></li>
+                    <li><a href="https://linkedin.com/company/mortanasagency" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-purple-400 transition-colors flex items-center"><i className="fab fa-linkedin w-3.5 text-purple-500/50"></i> Mortanas Agency</a></li>
                 </ul>
               </div>
             </div>
@@ -86,7 +96,13 @@ const Footer: React.FC = () => {
                     <li><a href="https://www.mortanasacademy.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-globe w-3.5 text-cyan-500/50"></i> mortanasacademy.com</a></li>
                     <li><a href="/egitimler" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-graduation-cap w-3.5 text-cyan-500/50"></i> Eğitim Programları</a></li>
                     <li><a href="/egitmenler" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-chalkboard-user w-3.5 text-cyan-500/50"></i> Eğitmen Kadrosu</a></li>
-                    <li><a href="mailto:info@mortanasacademy.com" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-cyan-500/50"></i> İletişim Kur</a></li>
+                    <li><a href="/sertifikalar" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-certificate w-3.5 text-cyan-500/50"></i> Sertifikalarımız</a></li>
+                    <li><a href="/mezunlar" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-user-graduate w-3.5 text-cyan-500/50"></i> Mezunlarımız</a></li>
+                    <li><a href="mailto:info@mortanasacademy.com" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-cyan-500/50"></i> info@mortanasacademy.com</a></li>
+                    <li><a href="https://instagram.com/mortanasacademy" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fab fa-instagram w-3.5 text-cyan-500/50"></i> @mortanasacademy</a></li>
+                    <li><a href="https://twitter.com/mortanasacademy" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fab fa-twitter w-3.5 text-cyan-500/50"></i> @mortanasacademy</a></li>
+                    <li><a href="https://youtube.com/c/mortanasacademy" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fab fa-youtube w-3.5 text-cyan-500/50"></i> Mortanas Academy</a></li>
+                    <li><a href="https://linkedin.com/company/mortanasacademy" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-cyan-400 transition-colors flex items-center"><i className="fab fa-linkedin w-3.5 text-cyan-500/50"></i> Mortanas Academy</a></li>
                 </ul>
               </div>
             </div>
@@ -98,7 +114,13 @@ const Footer: React.FC = () => {
                     <li><a href="https://www.mortanasmedya.com" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-globe w-3.5 text-emerald-500/50"></i> mortanasmedya.com</a></li>
                     <li><a href="/haberler" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-newspaper w-3.5 text-emerald-500/50"></i> Medya & Haberler</a></li>
                     <li><a href="/basin" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-microphone w-3.5 text-emerald-500/50"></i> Basın Odası</a></li>
-                    <li><a href="mailto:info@mortanasmedya.com" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-emerald-500/50"></i> İletişim Kur</a></li>
+                    <li><a href="/yayinlar" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-video w-3.5 text-emerald-500/50"></i> Yayınlarımız</a></li>
+                    <li><a href="/duyurular" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-bullhorn w-3.5 text-emerald-500/50"></i> Duyurular</a></li>
+                    <li><a href="mailto:info@mortanasmedya.com" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fas fa-envelope w-3.5 text-emerald-500/50"></i> info@mortanasmedya.com</a></li>
+                    <li><a href="https://instagram.com/mortanasmedya" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fab fa-instagram w-3.5 text-emerald-500/50"></i> @mortanasmedya</a></li>
+                    <li><a href="https://twitter.com/mortanasmedya" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fab fa-twitter w-3.5 text-emerald-500/50"></i> @mortanasmedya</a></li>
+                    <li><a href="https://youtube.com/c/mortanasmedya" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fab fa-youtube w-3.5 text-emerald-500/50"></i> Mortanas Medya</a></li>
+                    <li><a href="https://linkedin.com/company/mortanasmedya" target="_blank" rel="noopener noreferrer" className="text-[11px] text-slate-400 hover:text-emerald-400 transition-colors flex items-center"><i className="fab fa-linkedin w-3.5 text-emerald-500/50"></i> Mortanas Medya</a></li>
                 </ul>
               </div>
             </div>

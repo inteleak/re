@@ -75,6 +75,10 @@ export interface PricingTier {
     originalMonthlyPrice?: number;
     annualBillingText?: string;
     popular?: boolean;
+    prices?: SocialMediaPricingDetails;
+    originalPrices?: SocialMediaPricingDetails;
+    setupFee?: number;
+    extraMinuteFee?: string;
 }
 
 export interface SocialMediaPricingDetails {
@@ -90,6 +94,7 @@ export interface SocialMediaPricingPlan {
     features: string[];
     popular?: boolean;
     paymentLink?: string;
+    hasApiFee?: boolean;
 }
 
 export interface SetupFee {

@@ -84,7 +84,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index = 0 }) => {
   }
 
   return (
-    <div className={`group bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950/90 backdrop-blur-2xl py-4 md:py-5.5 px-6 md:px-8 rounded-3xl border-2 flex flex-col items-start transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full ${currentStyle.border} ${currentStyle.shadow} ${currentStyle.ring}`}>
+    <div className={`group bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950/90 backdrop-blur-2xl py-3.5 md:py-4 px-5 md:px-6 rounded-3xl border-2 flex flex-col items-start transition-all duration-500 hover:-translate-y-2 relative overflow-hidden h-full ${currentStyle.border} ${currentStyle.shadow} ${currentStyle.ring}`}>
       {/* Dynamic top edge glow effect */}
       <div className={`absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-transparent ${currentStyle.topLine} to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500`}></div>
       
@@ -92,13 +92,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index = 0 }) => {
       <div className={`absolute -top-16 -right-16 w-32 h-32 ${currentStyle.glow} rounded-full blur-[30px] transition-all duration-700 pointer-events-none`}></div>
       
       {/* Icon Frame */}
-      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${currentStyle.gradient} flex items-center justify-center mb-4 border border-white/10 shadow-lg shadow-blue-500/5 relative z-10 group-hover:scale-110 transition-transform duration-300`}>
+      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${currentStyle.gradient} flex items-center justify-center mb-3 border border-white/10 shadow-lg shadow-blue-500/5 relative z-10 group-hover:scale-110 transition-transform duration-300`}>
         {renderedIcon}
       </div>
       
       {/* Content */}
       <div className="relative z-10 flex-grow">
-        <h3 className={`font-extrabold text-lg md:text-xl text-white mb-2 transition-colors duration-300 group-hover:${currentStyle.textAccent}`}>
+        <h3 className={`font-extrabold text-lg md:text-xl text-white mb-1.5 transition-colors duration-300 group-hover:${currentStyle.textAccent}`}>
           {feature.title}
         </h3>
         <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-semibold">

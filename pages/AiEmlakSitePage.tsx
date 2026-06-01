@@ -1,116 +1,204 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import FeatureCard from '../components/FeatureCard';
+
+const EMLAK_FEATURES = [
+    {
+        title: "Kişiselleştirilmiş Karşılama",
+        description: "Yapay zeka, ziyaretçinin konumuna, geçmiş ziyaretlerine ve davranışlarına göre ana sayfanızı, tekliflerinizi ve içeriğinizi dinamik olarak değiştirir.",
+        icon: <i className="fas fa-user-astronaut"></i>
+    },
+    {
+        title: "Akıllı Randevu Motoru",
+        description: "Müşteriinize en uygun oda ve paketleri önerir, ek hizmetler (spa, tur vb.) için akıllıca çapraz satış yapar ve randevu sürecini kolaylaştırır.",
+        icon: <i className="fas fa-calendar-check"></i>
+    },
+    {
+        title: "7/24 Akıllı Konsiyerj",
+        description: "Web sitenizdeki sohbet botu, müşterilerin sorularını anında yanıtlar, randevu yapar ve hatta oda servisi gibi talepleri CRM'inize iletir.",
+        icon: <i className="fas fa-comments-dollar"></i>
+    },
+    {
+        title: "Dinamik Fiyatlandırma",
+        description: "Doluluk oranına, talep yoğunluğuna ve rakip analizlerine göre web sitenizde anlık fiyat güncellemeleri yaparak kârlılığınızı maksimize eder.",
+        icon: <i className="fas fa-tags"></i>
+    },
+    {
+        title: "Otomatik Müşteri İletişimi",
+        description: "Randevu sonrası, konaklama öncesi ve sonrası e-postaları kişiselleştirilmiş içeriklerle otomatik olarak göndererek müşterilerinizle bağ kurar.",
+        icon: <i className="fas fa-envelope-open-text"></i>
+    },
+    {
+        title: "Davranışsal Analiz",
+        description: "Hangi tekliflerin daha çok ilgi çektiğini, hangi sayfaların terk edildiğini analiz eder ve web sitenizi sürekli olarak optimize etmeniz için size içgörüler sunar.",
+        icon: <i className="fas fa-chart-line"></i>
+    }
+];
 import AiWebPricingSection from '../components/AiWebPricingSection';
 import type { FAQ } from '../types';
 
 const FAQItem: React.FC<{ faq: FAQ; isOpen: boolean; onClick: () => void }> = ({ faq, isOpen, onClick }) => {
     return (
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-700 transition-all duration-300 hover:shadow-xl hover:border-blue-300">
+        <div className="group bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950/90 backdrop-blur-2xl rounded-2xl border-2 border-indigo-500/20 shadow-lg shadow-indigo-500/5 transition-all duration-300 hover:shadow-indigo-500/20 hover:border-indigo-400">
             <button
                 onClick={onClick}
-                className="w-full flex justify-between items-start text-left p-6"
+                className="w-full flex justify-between items-center text-left py-2.5 px-4"
                 aria-expanded={isOpen}
             >
-                <span className="font-semibold text-lg text-white pr-4">{faq.question}</span>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}>
-                    <i className={`fas transition-transform duration-300 ${isOpen ? 'fa-minus rotate-180' : 'fa-plus'}`}></i>
+                <span className="font-bold text-sm text-white pr-4">{faq.question}</span>
+                <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm ${isOpen ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-blue-500/30' : 'bg-slate-800 text-slate-300 border border-slate-600/50'}`}>
+                    <i className={`fas text-xs transition-transform duration-300 ${isOpen ? 'fa-minus rotate-180' : 'fa-plus'}`}></i>
                 </div>
             </button>
             <div
                 className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
             >
                 <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-slate-300">
-                        {faq.answer}
-                    </p>
+                    <div className="px-4 pb-3">
+                        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent mb-2"></div>
+                        <p className="text-slate-300 text-xs font-medium leading-relaxed">{faq.answer}</p>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-// Re-usable components from other AiWeb pages
-const FeatureCard: React.FC<{ icon: string; title: string; description: string; color?: 'blue' | 'green' }> = ({ icon, title, description, color = 'blue' }) => {
-    const colorClasses = {
-        blue: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-        green: { bg: 'bg-green-500/10', text: 'text-green-400' },
-    };
-    return (
-        <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 h-full border border-slate-700">
-            <div className={`flex-shrink-0 h-16 w-16 ${colorClasses[color].bg} rounded-xl flex items-center justify-center mb-5`}>
-                <i className={`${icon} ${colorClasses[color].text} text-3xl`}></i>
-            </div>
-            <h3 className="font-bold text-xl mb-2 text-white">{title}</h3>
-            <p className="text-slate-300">{description}</p>
-        </div>
-    );
-};
+
+
 
 const ProblemSolutionCard: React.FC<{ problem: string; solution: string; }> = ({ problem, solution }) => (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-slate-700">
-        <div className="p-6">
-            <div className="flex items-center space-x-3 mb-3">
-                <div className="h-8 w-8 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                    <i className="fas fa-exclamation-circle text-red-400"></i>
-                </div>
-                <h4 className="font-bold text-lg text-red-400">Sorun</h4>
+    <div className="group bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-indigo-950/80 backdrop-blur-2xl rounded-xl border border-indigo-500/20 overflow-hidden transition-all duration-300 hover:border-indigo-400/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] flex flex-col h-full relative">
+        <div className="p-4 relative z-10">
+            <div className="flex items-start gap-3">
+                 <div className="w-6 h-6 rounded-md bg-red-500/10 text-red-400 flex items-center justify-center flex-shrink-0 border border-red-500/20 mt-0.5">
+                     <i className="fas fa-times text-[10px]"></i>
+                 </div>
+                 <div>
+                     <h4 className="text-[10px] font-bold uppercase tracking-wider text-red-400/80 mb-0.5">Klasik Sorun</h4>
+                     <p className="text-slate-300 text-xs md:text-[13px] font-medium leading-relaxed">{problem}</p>
+                 </div>
             </div>
-            <p className="text-slate-300">{problem}</p>
         </div>
-        <div className="bg-green-900/20 p-6 border-t border-green-500/30">
-             <div className="flex items-center space-x-3 mb-3">
-                <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                    <i className="fas fa-check-circle text-green-400"></i>
-                </div>
-                <h4 className="font-bold text-lg text-green-400">Çözüm</h4>
+        <div className="p-4 bg-gradient-to-br from-indigo-500/10 to-blue-500/5 border-t border-indigo-500/20 relative z-10 flex-grow">
+            <div className="flex items-start gap-3">
+                 <div className="w-6 h-6 rounded-md bg-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0 border border-blue-500/30 mt-0.5 shadow-[0_0_10px_rgba(59,130,246,0.2)]">
+                     <i className="fas fa-check text-[10px]"></i>
+                 </div>
+                 <div>
+                     <h4 className="text-[10px] font-bold uppercase tracking-wider text-blue-400/80 mb-0.5">Akıllı Çözüm</h4>
+                     <p className="text-white text-xs md:text-[13px] font-semibold leading-relaxed">{solution}</p>
+                 </div>
             </div>
-            <p className="text-slate-200 font-medium">{solution}</p>
         </div>
     </div>
 );
 
+
 const FomoSection: React.FC = () => (
-    <section className="bg-slate-900 text-white rounded-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
-        <div className="absolute inset-0 bg-grid-white/[0.05]"></div>
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[32rem] h-[32rem] bg-blue-500/20 rounded-full blur-3xl opacity-40"></div>
-        <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950/90 to-slate-950 rounded-3xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.5)] border border-indigo-500/30 w-full max-w-7xl mx-auto backdrop-blur-2xl">
+        <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/20 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
             {/* Left: Text Content */}
             <div className="text-center lg:text-left">
-                <span className="text-sm font-bold tracking-wider text-blue-300 bg-blue-500/20 px-3 py-1.5 rounded-full uppercase">
-                    Piyasada Öne Çıkın
-                </span>
-                <h2 className="text-4xl md:text-5xl font-extrabold mt-4">
-                    Fırsatları Kaçırmayın
+                <div className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full mb-4">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                    </span>
+                    <span className="text-[10px] md:text-xs font-bold tracking-widest text-indigo-300 uppercase">
+                        Rekabette Öne Geçin
+                    </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1] tracking-tight">
+                    Dijital Dönüşümü <br />
+                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text">Ertelemeyin</span>
                 </h2>
-                <p className="mt-6 text-lg text-slate-300">
-                    Emlak piyasası dijitalleşirken, harekete geçmemek potansiyel müşteri kaybetmek demektir. İşte yapay zeka destekli bir sitenin getireceği somut avantajlar:
+                <p className="mt-4 text-sm md:text-base text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                    Emlakcilik sektörü hızla dijitalleşirken, harekete geçmemek pazar payı ve kârlılık kaybetmek anlamına gelir. Yapay zeka entegrasyonunun somut etkilerini hemen görün.
                 </p>
-                <Link to="/kurumsal" className="mt-10 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:from-blue-600 hover:to-cyan-500 transition-all transform hover:scale-105 inline-flex items-center space-x-3 text-lg">
-                    <span>Hemen Harekete Geçin</span>
-                    <i className="fas fa-arrow-right"></i>
-                </Link>
+                <div className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <Link to="/kurumsal" className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 px-6 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center space-x-2 text-sm border border-indigo-400/20 hover:border-indigo-400/40">
+                        <span>Hemen Harekete Geçin</span>
+                        <i className="fas fa-arrow-right text-xs"></i>
+                    </Link>
+                </div>
             </div>
+            
             {/* Right: Stats */}
-            <div className="space-y-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 flex items-center space-x-5">
-                    <div className="flex-shrink-0 text-5xl font-bold text-blue-400">90%</div>
-                    <div>
-                        <h3 className="font-bold text-lg text-white">Daha Geniş Erişim</h3>
-                        <p className="text-slate-300 text-sm">Alıcıların %90'ı emlak arayışına internetten başlıyor. Onları ilk karşılayan siz olun.</p>
+            <div className="space-y-4 w-full">
+                {/* Stat 1 */}
+                <div className="group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 hover:border-indigo-500/50 rounded-2xl p-4 md:p-5 transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-150 pointer-events-none"></div>
+                    <div className="flex items-center space-x-4 md:space-x-5 relative z-10">
+                        <div className="flex-shrink-0 flex items-center justify-center relative min-w-[70px]">
+                            <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-500/30 transition-colors duration-300"></div>
+                            <div className="relative z-10">
+                                <span className="text-4xl md:text-5xl font-black bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text drop-shadow-sm inline-block transform group-hover:scale-105 transition-transform duration-300 tracking-tighter">
+                                    66<span className="text-2xl md:text-3xl">%</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="font-bold text-sm md:text-base text-white mb-1.5 flex items-center group-hover:text-blue-300 transition-colors duration-300">
+                                <span className="flex items-center justify-center w-6 h-6 rounded-md bg-emerald-500/20 border border-emerald-500/30 mr-2 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+                                    <i className="fas fa-arrow-trend-up text-emerald-400 text-[10px]"></i>
+                                </span>
+                                Daha Fazla Randevu
+                            </h3>
+                            <p className="text-slate-400 text-[11px] md:text-xs leading-relaxed font-medium">Her 3 müşteriden 2'si, kişiselleştirilmiş teklifler sunan sitelerden randevu yapıyor.</p>
+                        </div>
                     </div>
                 </div>
-                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 flex items-center space-x-5">
-                    <div className="flex-shrink-0 text-5xl font-bold text-blue-400">50%</div>
-                    <div>
-                        <h3 className="font-bold text-lg text-white">Daha Hızlı Satış</h3>
-                        <p className="text-slate-300 text-sm">AI destekli bir site, potansiyel müşterileri %50 daha hızlı nitelikli hale getirir.</p>
+                
+                {/* Stat 2 */}
+                <div className="group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 hover:border-purple-500/50 rounded-2xl p-4 md:p-5 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-150 pointer-events-none"></div>
+                    <div className="flex items-center space-x-4 md:space-x-5 relative z-10">
+                        <div className="flex-shrink-0 flex items-center justify-center relative min-w-[70px]">
+                            <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full group-hover:bg-purple-500/30 transition-colors duration-300"></div>
+                            <div className="relative z-10">
+                                <span className="text-4xl md:text-5xl font-black bg-gradient-to-br from-purple-400 via-fuchsia-400 to-pink-400 text-transparent bg-clip-text drop-shadow-sm inline-block transform group-hover:scale-105 transition-transform duration-300 tracking-tighter">
+                                    35<span className="text-2xl md:text-3xl">%</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="font-bold text-sm md:text-base text-white mb-1.5 flex items-center group-hover:text-purple-300 transition-colors duration-300">
+                                <span className="flex items-center justify-center w-6 h-6 rounded-md bg-emerald-500/20 border border-emerald-500/30 mr-2 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+                                    <i className="fas fa-chart-line text-emerald-400 text-[10px]"></i>
+                                </span>
+                                Daha Yüksek Kârlılık
+                            </h3>
+                            <p className="text-slate-400 text-[11px] md:text-xs leading-relaxed font-medium">Akıllı otomasyon kullanan emlakler, OTA komisyonlarından kurtularak kârlılığını artırıyor.</p>
+                        </div>
                     </div>
                 </div>
-                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 flex items-center space-x-5">
-                    <div className="flex-shrink-0 text-5xl font-bold text-blue-400">40%</div>
-                    <div>
-                        <h3 className="font-bold text-lg text-white">Daha Verimli Danışman</h3>
-                        <p className="text-slate-300 text-sm">Danışmanlarınızın zamanını %40 oranında serbest bırakarak satışa odaklanmalarını sağlayın.</p>
+
+                {/* Stat 3 */}
+                <div className="group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 hover:border-cyan-500/50 rounded-2xl p-4 md:p-5 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-150 pointer-events-none"></div>
+                    <div className="flex items-center space-x-4 md:space-x-5 relative z-10">
+                        <div className="flex-shrink-0 flex items-center justify-center relative min-w-[70px]">
+                            <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full group-hover:bg-cyan-500/30 transition-colors duration-300"></div>
+                            <div className="relative z-10 text-center w-full">
+                                <span className="text-4xl md:text-5xl font-black bg-gradient-to-br from-cyan-400 via-blue-400 to-indigo-400 text-transparent bg-clip-text drop-shadow-sm inline-block transform group-hover:scale-105 transition-transform duration-300 tracking-tighter">
+                                    24<span className="text-2xl md:text-3xl text-cyan-300/80">/</span><span className="text-3xl md:text-4xl text-indigo-300">7</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="font-bold text-sm md:text-base text-white mb-1.5 flex items-center group-hover:text-cyan-300 transition-colors duration-300">
+                                <span className="flex items-center justify-center w-6 h-6 rounded-md bg-cyan-500/20 border border-cyan-500/30 mr-2 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                                    <i className="fas fa-robot text-cyan-400 text-[10px]"></i>
+                                </span>
+                                Kesintisiz Hizmet
+                            </h3>
+                            <p className="text-slate-400 text-[11px] md:text-xs leading-relaxed font-medium">AI konsiyerj ile hiçbir potansiyel müşteri randevuunu veya talebi kaçırmayın.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,6 +209,29 @@ const FomoSection: React.FC = () => (
 
 const AiEmlakSitePage: React.FC = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const sliderImages = [
+        "https://mortanas.com/resim/mortel1.png",
+        "https://mortanas.com/resim/mortel2.png",
+        "https://mortanas.com/resim/mortel3.png",
+        "https://mortanas.com/resim/mortel4.png",
+        "https://mortanas.com/resim/mortel5.png",
+        "https://mortanas.com/resim/mortel6.png",
+        "https://mortanas.com/resim/mortel7.png",
+        "https://mortanas.com/resim/mortel8.png",
+        "https://mortanas.com/resim/mortel9.png",
+        "https://mortanas.com/resim/mortel10.png",
+        "https://mortanas.com/resim/mortel11.png",
+        "https://mortanas.com/resim/mortel12.png"
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % sliderImages.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
 
     const handleFaqClick = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -128,56 +239,79 @@ const AiEmlakSitePage: React.FC = () => {
 
     const faqs: FAQ[] = [
         { 
-            question: "Yapay Zeka Emlak Sitesi'nin en büyük avantajı nedir?",
-            answer: "En büyük avantajı, 7/24 çalışan bir sanal danışman gibi potansiyel müşteri (lead) yakalamasıdır. Ziyaretçilerin sorularını yanıtlar, aradıkları kriterlere uygun ilanları sunar ve iletişim bilgilerini alarak size nitelikli müşteri adayları oluşturur."
+            question: "Yapay Zeka Web Sitesi tam olarak ne işe yarar?",
+            answer: "Geleneksel bir web sitesinin ötesinde, müşterilerinizle 7/24 sohbet eden, doğrudan randevu alarak komisyonlardan kurtaran akıllı bir platformdur."
         },
         { 
-            question: "Mevcut ilanlarımı siteye kolayca aktarabilir miyim?",
-            answer: "Evet, XML entegrasyonu sayesinde Sahibinden, Hepsiemlak gibi portallardaki veya kendi CRM'inizdeki tüm ilanlarınızı fotoğrafları ve detaylarıyla birlikte sitenize otomatik olarak aktarabiliyoruz."
+            question: "Mevcut randevu sistemimle (PMS) entegre olabilir mi?",
+            answer: "Evet, Elektra, Opera gibi birçok popüler PMS ve kanal yöneticisi ile tam entegre çalışarak oda müsaitliğini anlık senkronize eder."
         },
         { 
-            question: "Site üzerinden mülk gösterme randevusu alınabilir mi?",
-            answer: "Evet, AI asistanı, danışmanlarınızın takvimleriyle entegre çalışarak potansiyel alıcıların uygun zaman dilimleri için otomatik olarak randevu oluşturmasını sağlar."
+            question: "Kurulum ve yayına alma süreci ne kadar sürer?",
+            answer: "Anahtar teslim projemiz, mevcut sistemlerinizle entegrasyon ve yapay zeka eğitimi dahil yaklaşık 5-7 iş günü içinde tamamlanır."
         },
         { 
-            question: "Kurulum ne kadar sürer?",
-            answer: "Portföyünüzün entegrasyonu ve yapay zekanın bölge ve mülkleriniz hakkında eğitilmesi dahil olmak üzere anahtar teslim kurulum sürecimiz ortalama 5-7 iş günü sürer."
+            question: "AI Konsiyerj hangi dilleri destekliyor?",
+            answer: "Türkçe ve İngilizce başta olmak üzere Almanca, Rusça, Arapça gibi 10'dan fazla dilde hizmet vererek uluslararası destek olur."
         },
         { 
-            question: "Site, SEO (Arama Motoru Optimizasyonu) uyumlu mu?",
-            answer: "Evet, tüm sitelerimiz en güncel SEO tekniklerine uygun olarak inşa edilir. Yapay zeka, ilan başlıkları ve açıklamaları için SEO dostu öneriler sunarak Google'da daha kolay bulunmanızı sağlar."
+            question: "Fiyatlandırmaya hosting ve alan adı dahil mi?",
+            answer: "Evet, seçtiğiniz pakete göre abonelik süreniz boyunca güvenli hosting, SSL sertifikası ve alan adı hizmetleri fiyata dahildir."
         },
         { 
-            question: "Ziyaretçiler kredi hesaplaması yapabilir mi?",
-            answer: "Evet, sitenize entegre edilecek konut kredisi hesaplama aracı sayesinde ziyaretçiler, ilgilendikleri mülkler için anında ödeme planı ve taksit tutarı hesaplaması yapabilir."
+            question: "Web sitesinin tasarımını kendi markama göre özelleştirebilir miyim?",
+            answer: "Kesinlikle. Kurulum aşamasında, renkleri, logoyu ve tasarımı emlakinizin kurumsal kimliğine tam uyumlu hale getiriyoruz."
         },
         { 
-            question: "Danışman performansını takip edebilir miyim?",
-            answer: "Evet, yönetim panelinden hangi danışmanın ne kadar potansiyel müşteriyle görüştüğünü, kaç randevu oluşturduğunu ve hangi ilanların daha popüler olduğunu takip edebilirsiniz."
+            question: "Raporlama ve analiz özellikleri nelerdir?",
+            answer: "Yönetim panelinden, web trafiği, en çok sorulan sorular ve doğrudan randevu gelirleri gibi kritik veriye ulaşabilirsiniz."
+        },
+        {
+            question: "Doğrudan randevular için komisyon ödüyor muyum?",
+            answer: "Hayır, sitemiz üzerinden yapılan hiçbir randevudan ekstra komisyon veya işlem ücreti kesilmez. Tüm kâr emlakinize kalır."
+        },
+        {
+            question: "Sitenin arama motorlarında (SEO) performansı nasıldır?",
+            answer: "Yapay zeka altyapımız, SEO uyumlu kod yapısı ve hızlı sayfa yükleme süreleri ile Google'da üst sıralara çıkmanıza destek olur."
+        },
+        {
+            question: "Teknik sorun yaşarsam destek süreciniz nasıl işliyor?",
+            answer: "7/24 hizmet veren teknik destek ekibimiz, olası problemleri dakikalar içerisinde çözerek kesintisiz operasyon yapmanızı sağlar."
+        },
+        {
+            question: "Mevcut sitemdeki içerikler yeni siteye taşınacak mı?",
+            answer: "Evet, uzman ekibimiz mevcut fotoğraflarınızı, oda açıklamalarınızı ve sayfalarınızı yeni sisteme eksiksiz olarak aktarır."
+        },
+        {
+            question: "Blog veya makale ekleyebilir miyim?",
+            answer: "Yönetim panelinden kolayca SEO uyumlu blog yazıları oluşturabilir, kampanyalarınızı müşterilerinize sunabilirsiniz."
         }
     ];
 
     const whatsappLink = `https://wa.me/905540118888?text=${encodeURIComponent("Merhaba, Yapay Zeka Emlak Sitesi hakkında bilgi almak istiyorum.")}`;
-    const aiAssistantFeatures = [
-        { icon: "fas fa-calendar-check", title: "Otomatik Randevu Planlama", description: "Danışmanlarınızın takvimleriyle entegre çalışarak, mülk gösterme randevularını otomatik olarak ve çakışma olmadan ayarlar." },
-        { icon: "fas fa-comments-dollar", title: "Anında Ön Bilgilendirme", description: "İlanın özellikleri, konumu, metrekare bilgisi gibi temel soruları 7/24 anında yanıtlar ve müşteriyi sıcak tutar." },
-        { icon: "fas fa-user-plus", title: "Nitelikli Müşteri Adayı Toplama", description: "Sohbet esnasında alıcının bütçesi, aradığı özellikler ve iletişim bilgileri gibi kritik verileri toplayarak CRM'inize kaydeder." }
+    const aiConciergeFeatures = [
+        { icon: <i className="fas fa-bolt"></i>, title: "Anında Randevu", description: "Oda müsaitliği sorar, en iyi fiyatı sunar ve randevuu saniyeler içinde tamamlar." },
+        { icon: <i className="fas fa-concierge-bell"></i>, title: "Oda Servisi & Talep Yönetimi", description: "Müşterileriniz web sitenizden ayrılmadan havlu, yastık isteyebilir veya oda servisi siparişi verebilir." },
+        { icon: <i className="fas fa-map-location-dot"></i>, title: "Akıllı Bölge Rehberi", description: "Yakındaki restoranlar, gezilecek yerler veya ulaşım seçenekleri hakkında anında bilgi verir." },
+        { icon: <i className="fas fa-language"></i>, title: "Çok Dilli Destek", description: "Yabancı müşterilerinizle kendi dillerinde akıcı bir şekilde iletişim kurarak global müşteri kitlenizi genişletir." },
+        { icon: <i className="fas fa-star-half-alt"></i>, title: "Anlık Geri Bildirim Toplama", description: "Konaklama sonrası müşteri memnuniyetini ölçmek için sohbet üzerinden anket yapar ve yorumları analiz eder." },
+        { icon: <i className="fas fa-arrow-up-right-dots"></i>, title: "Upsell & Cross-sell", description: "Spa randevusu, restoran randevuu veya tur paketi gibi ek hizmetleri proaktif olarak önererek müşteri başına geliri artırır." }
     ];
     const howItWorksSteps = [
         {
             icon: 'fa-plug',
             title: '1. Entegrasyon & Kurulum',
-            description: 'Kullandığınız Emlak CRM\'ini veya ilan portalı hesaplarınızı platformumuza sorunsuzca entegre ediyoruz.'
+            description: 'Mevcut Emlak Yönetim Sisteminizi (PMS), kanal yöneticinizi ve ödeme altyapınızı platformumuza sorunsuzca bağlıyoruz.'
         },
         {
             icon: 'fa-brain',
             title: '2. AI Eğitimi & Kişiselleştirme',
-            description: 'Yapay zekayı; portföyünüz, bölge özellikleri ve hedef müşteri kitlenizle eğitiyoruz. Asistanınız uzman bir danışman gibi davranmaya başlıyor.'
+            description: 'Yapay zekayı, emlakinizin kimliği, oda tipleri, fiyatlandırma stratejisi ve müşteri profiliyle eğitiyoruz. Web siteniz markanızın dilini konuşmaya başlıyor.'
         },
         {
             icon: 'fa-rocket',
             title: '3. Aktivasyon & Büyüme',
-            description: 'Akıllı emlak siteniz yayına alınır. İlk günden itibaren nitelikli potansiyel müşteri toplamaya ve satış süreçlerinizi hızlandırmaya başlarsınız.'
+            description: 'Akıllı web siteniz yayına alınır. İlk günden itibaren komisyonsuz randevu almaya, müşteri verisi toplamaya ve gelirinizi artırmaya başlarsınız.'
         },
     ];
 
@@ -187,187 +321,171 @@ const AiEmlakSitePage: React.FC = () => {
             <section className="bg-gradient-to-br from-gray-900 via-blue-900 to-slate-900 text-white pt-24 pb-16">
                 <div className="container mx-auto px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span className="text-sm font-bold tracking-wider text-blue-300 bg-blue-500/20 px-3 py-1.5 rounded-full uppercase">YAPAY ZEKA WEB SİTESİ</span>
-                            <h1 className="text-4xl md:text-5xl font-extrabold mt-4 leading-tight">
-                                Portföyünüzü Hayata Geçiren <span className="text-blue-400">Akıllı Emlak Siteniz</span>
+                        <div className="relative z-10">
+                            <div className="inline-flex items-center gap-2 mb-5">
+                                <span className="relative flex h-2.5 w-2.5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                                </span>
+                                <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase backdrop-blur-md">Yapay Zeka Web Si̇tesi̇</span>
+                            </div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mt-2 leading-[1.1] text-white tracking-tight">
+                                Müşteri Deneyimini Zirveye Taşıyan <br /> 
+                                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text">Akıllı Emlak Siteniz</span>
                             </h1>
-                            <p className="mt-6 text-lg text-blue-200">
-                                Sadece ilan listeleyen bir web sitesinden fazlası. Mortanas Yapay Zeka Web, her ziyaretçiye özel bir emlak danışmanı gibi davranır, potansiyel müşterileri yakalar ve satışlarınızı hızlandırır.
+                            <p className="mt-5 text-base md:text-lg text-slate-300 font-medium leading-relaxed max-w-2xl">
+                                Sadece randevu alan bir web sitesinden çok daha fazlası. <strong className="text-white font-semibold text-indigo-100">Mortanas Yapay Zeka Web</strong>, her müşteriinize kişiselleştirilmiş bir deneyim sunar, doğrudan randevularınızı artırır ve 7/24 çalışan akıllı bir konsiyerj gibi hareket eder.
                             </p>
-                            <div className="mt-8">
-                                <Link to="/kurumsal" className="bg-blue-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-600 transition-all transform hover:scale-105 inline-block">
-                                    Teklif Alın
+                            <div className="mt-8 flex flex-col sm:flex-row gap-5 items-center">
+                                <Link to="/kurumsal" className="w-full sm:w-auto group relative inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
+                                    <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full -translate-x-full transition-transform duration-500 ease-out skew-x-12"></div>
+                                    <span className="relative z-10 flex items-center gap-2 text-base">
+                                        Hemen Teklif Alın <i className="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                                    </span>
                                 </Link>
+                                <div className="flex items-center gap-3 text-slate-400 text-xs md:text-sm font-medium bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-2 pr-4 shadow-inner">
+                                    <div className="flex -space-x-2">
+                                        <div className="w-8 h-8 rounded-full border-2 border-slate-900 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative z-30 shadow-sm">
+                                            <i className="fas fa-rocket text-blue-400 text-[10px]"></i>
+                                        </div>
+                                        <div className="w-8 h-8 rounded-full border-2 border-slate-900 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative z-20 shadow-sm">
+                                            <i className="fas fa-chart-line text-green-400 text-[10px]"></i>
+                                        </div>
+                                        <div className="w-8 h-8 rounded-full border-2 border-slate-900 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative z-10 shadow-sm">
+                                            <i className="fas fa-magic text-purple-400 text-[10px]"></i>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col leading-tight">
+                                        <span className="text-white font-semibold text-xs text-indigo-100">Yeni Nesil Teknoloji</span>
+                                        <span className="text-[10px] text-slate-400">7/24 Kesintisiz Operasyon</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <img src="https://i.imgur.com/3D1jQ2r.png" alt="AI Real Estate Website Mockup" className="rounded-2xl shadow-2xl ring-4 ring-blue-500/30" />
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                            <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Luxury AI Hemlak Website" className="w-full h-full object-cover aspect-[4/3] transform transition-transform duration-700 group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
+                                <div className="absolute bottom-6 left-6 p-4 bg-slate-900/60 backdrop-blur-md border border-white/10 rounded-xl">
+                                     <div className="flex items-center gap-3">
+                                         <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                             <i className="fas fa-robot text-blue-400"></i>
+                                         </div>
+                                         <div>
+                                             <p className="text-white font-bold text-sm">Akıllı Asistan Aktif</p>
+                                             <p className="text-blue-200 text-xs text-left">7/24 Müşteri Hizmeti</p>
+                                         </div>
+                                     </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <div className="container mx-auto px-8 py-24 space-y-24">
+            <div className="container mx-auto px-8 py-12 space-y-16">
                 {/* Features Section */}
-                <section className="bg-slate-800/50 backdrop-blur-sm rounded-3xl py-20 -mx-8 px-8 border border-slate-700">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">Neden Yapay Zeka Destekli Bir Emlak Sitesi?</h2>
-                        <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
-                           Potansiyel müşteri kalitesini artırın, danışman verimliliğini yükseltin ve satış süreçlerinizi hızlandırın.
-                        </p>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <FeatureCard 
-                            icon="fas fa-search-location"
-                            title="Akıllı Portföy Arama"
-                            description="AI, 'deniz manzaralı 3+1 yazlık' gibi doğal dil sorgularını anlar ve ziyaretçiye en uygun ilanları saniyeler içinde sunar."
-                        />
-                        <FeatureCard 
-                            icon="fas fa-user-tie"
-                            title="7/24 Potansiyel Müşteri Yakalama"
-                            description="AI Chatbot, site ziyaretçilerini karşılar, sorularını yanıtlar, iletişim bilgilerini alır ve randevu planlayarak size nitelikli müşteri adayları sunar."
-                        />
-                         <FeatureCard 
-                            icon="fas fa-house-user"
-                            title="Kişiselleştirilmiş İlan Önerileri"
-                            description="Ziyaretçinin gezdiği ilanları ve arama kriterlerini analiz ederek, ana sayfada ve e-posta ile kişiye özel yeni ilan önerileri sunar."
-                        />
-                        <FeatureCard 
-                            icon="fas fa-calculator"
-                            title="Dinamik Değerleme ve Kredi Aracı"
-                            description="AI, bölge verilerini analiz ederek mülkler için tahmini bir değerleme sunar ve entegre kredi hesaplama araçlarıyla alıcıları teşvik eder."
-                        />
-                        <FeatureCard 
-                            icon="fas fa-vr-cardboard"
-                            title="Sanal Tur Entegrasyonu"
-                            description="360° sanal tur entegrasyonu ile potansiyel alıcıların mülkleri evlerinden ayrılmadan gezmelerini sağlayarak zaman kazandırır."
-                        />
-                         <FeatureCard 
-                            icon="fas fa-map-marked-alt"
-                            title="Akıllı Mahalle Analizi"
-                            description="Her ilan sayfasında okullar, hastaneler, ulaşım ve sosyal olanaklar hakkında yapay zeka tarafından derlenmiş güncel bilgiler sunar."
-                        />
-                    </div>
-                </section>
-                
-                {/* Problem & Solution Section */}
-                <section className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-inner border border-slate-700">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">Standart Sitelerin Yarattığı Fırsat Kayıpları</h2>
-                        <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
-                           Satışları ve kiralamaları yavaşlatan yaygın sorunlara getirdiğimiz akıllı çözümler.
-                        </p>
-                    </div>
-                    <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                       <ProblemSolutionCard
-                            problem="Ziyaretçiler binlerce ilan arasında kaybolur ve aradığını bulamadan siteyi terk eder."
-                            solution="AI destekli arama, ziyaretçinin tam olarak ne istediğini anlar ve en uygun ilanları saniyeler içinde sunar."
-                       />
-                       <ProblemSolutionCard
-                            problem="Ciddi olmayan alıcılardan gelen telefon ve mesaj trafiği, danışmanların değerli zamanını tüketir."
-                            solution="AI Asistan, 7/24 çalışarak ilk teması kurar, ön elemeyi yapar ve sadece nitelikli alıcıları danışmanlara yönlendirir."
-                       />
-                       <ProblemSolutionCard
-                            problem="Standart web siteleri, her ziyaretçiye aynı deneyimi sunar ve potansiyel müşteriye özel bir bağ kuramaz."
-                            solution="AI, ziyaretçinin davranışlarına göre kişiselleştirilmiş ilanlar sunarak, onlara özel bir danışmanlık deneyimi yaşatır."
-                       />
-                    </div>
-                </section>
-
-                {/* AI Chatbot System Section */}
-                 <section className="bg-slate-900 rounded-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-grid-white/[0.05]"></div>
-                    <div className="absolute top-1/2 left-1/2 w-[40rem] h-[40rem] -translate-x-1/2 -translate-y-1/2 bg-blue-500/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-indigo-900 rounded-3xl py-10 md:py-12 -mx-8 px-8 border border-indigo-500/20 shadow-indigo-500/10">
+                    <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"></div>
+                    <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    
                     <div className="relative z-10">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white">Sitenizin Yeni Emlak Danışmanı: <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">7/24 AI Asistan</span></h2>
-                            <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
-                               Bu asistan, sadece soruları yanıtlamakla kalmaz, aynı zamanda sizin için potansiyel müşteri üretir ve satış sürecini başlatır.
+                        <div className="text-center mb-8">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white">
+                                Neden Yapay Zeka Destekli <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text">Bir Web Sitesi?</span>
+                            </h2>
+                            <p className="mt-3 text-base md:text-lg text-slate-300 max-w-3xl mx-auto">
+                               OTA komisyonlarını azaltın, müşteri sadakatini artırın ve operasyonel verimliliği en üst düzeye çıkarın.
                             </p>
                         </div>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                           {aiAssistantFeatures.map((feature, index) => (
-                                <div key={index} className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-2xl border border-white/10 transition-all duration-300 hover:border-blue-400 hover:-translate-y-1">
-                                    <div className="flex-shrink-0 h-16 w-16 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                                        <i className={`${feature.icon} text-3xl`}></i>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                                    <p className="text-slate-300">{feature.description}</p>
-                                </div>
-                           ))}
-                        </div>
-                    </div>
-                </section>
-                
-                {/* FOMO Section */}
-                <FomoSection />
-
-                {/* How It Works - Redesigned Timeline Section */}
-                <section>
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white">3 Adımda <span className="text-blue-400">Akıllı Siteniz</span> Hazır</h2>
-                        <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
-                            Karmaşık süreçleri unutun. Anahtar teslim yaklaşımımızla, emlak işinizin dijital dönüşümünü hızla ve zahmetsizce gerçekleştiriyoruz.
-                        </p>
-                    </div>
-
-                    <div className="relative container mx-auto px-6">
-                        {/* Timeline Line */}
-                        <div className="absolute left-6 md:left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-blue-800 rounded-full"></div>
-                        
-                        <div className="space-y-16">
-                            {howItWorksSteps.map((step, index) => (
-                                <div key={index} className={`relative flex items-center group ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                                    {/* Desktop Circle */}
-                                    <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 bg-slate-900 border-4 border-blue-600 rounded-full items-center justify-center z-10">
-                                        <i className={`fas ${step.icon} text-xl text-blue-400`}></i>
-                                    </div>
-                                    {/* Mobile Circle */}
-                                    <div className="md:hidden absolute top-0 -left-6 w-12 h-12 bg-slate-900 border-4 border-blue-600 rounded-full flex items-center justify-center z-10">
-                                        <i className={`fas ${step.icon} text-xl text-blue-400`}></i>
-                                    </div>
-
-                                    <div className="md:w-1/2">
-                                        <div className={`
-                                            ${index % 2 !== 0 ? 'md:ml-auto' : ''} 
-                                            w-full max-w-md bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-slate-700 
-                                            transform ${index % 2 !== 0 ? 'md:group-hover:translate-x-2' : 'md:group-hover:-translate-x-2'} 
-                                            transition-transform duration-300 ml-10 md:ml-0
-                                        `}>
-                                            <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                                            <p className="mt-2 text-slate-300">{step.description}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {EMLAK_FEATURES.map((feature, index) => (
+                                <FeatureCard key={index} feature={feature} index={index} />
                             ))}
                         </div>
                     </div>
                 </section>
                 
+                {/* Problem & Solution Section */}
+                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-indigo-900 rounded-3xl p-8 md:p-12 shadow-inner border border-indigo-500/20 shadow-indigo-500/10">
+                    <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-blue-500/10 to-transparent"></div>
+                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+                    <div className="relative z-10 text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">Klasik Sitelerin Yarattığı Problemler ve <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text">Akıllı Çözümler</span></h2>
+                        <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
+                           Doğrudan randevuları ve kârlılığı engelleyen yaygın sorunları nasıl aştığımızı görün.
+                        </p>
+                    </div>
+                    <div className="relative z-10 grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                       <ProblemSolutionCard
+                            problem="OTA'lara ödenen %15-25 arası yüksek komisyonlar kâr marjınızı eritir."
+                            solution="Yapay zeka siteniz, müşterileri doğrudan randevua teşvik ederek bu maliyeti ortadan kaldırır."
+                       />
+                       <ProblemSolutionCard
+                            problem="Mesai saatleri dışında veya yoğun anlarda telefonlara cevap veremez, potansiyel müşterileri kaçırırsınız."
+                            solution="AI Chatbot, her soruyu 7/24 anında yanıtlar ve hiçbir randevu fırsatını kaçırmaz."
+                       />
+                       <ProblemSolutionCard
+                            problem="Her ziyaretçiye aynı standart içeriği göstermek, kişiselleştirme eksikliği nedeniyle dönüşümleri düşürür."
+                            solution="AI, her ziyaretçiye özel teklifler ve içerikler sunarak etkileşimi ve randevu oranını artırır."
+                       />
+                    </div>
+                </section>
+
+                {/* AI Chatbot System Section */}
+                <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-indigo-900 rounded-3xl p-8 md:p-12 shadow-inner border border-indigo-500/20 shadow-indigo-500/10">
+                    <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-blue-500/10 to-transparent"></div>
+                    <div className="absolute top-1/2 left-1/2 w-[40rem] h-[40rem] -translate-x-1/2 -translate-y-1/2 bg-blue-500/20 rounded-full blur-3xl opacity-50 animate-pulse pointer-events-none"></div>
+                    <div className="relative z-10 text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">Web Sitenizin Yeni Yıldızı: <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">7/24 AI Konsiyerj</span></h2>
+                        <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
+                           Bu sadece bir chatbot değil; emlakinizin tüm dijital operasyonlarını yöneten, gelir getiren akıllı bir asistandır.
+                        </p>
+                    </div>
+                    <div className="relative z-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                       {aiConciergeFeatures.map((feature, index) => (
+                            <FeatureCard key={index} feature={feature} index={index} />
+                       ))}
+                    </div>
+                </section>
+                
+                {/* FOMO Section */}
+                <FomoSection />
+                
                 {/* Pricing Section */}
                 <AiWebPricingSection planName="Yapay Zeka Emlak Sitesi" themeColor="blue" />
 
                 {/* FAQ Section */}
-                <section id="faq" className="bg-slate-800/50 backdrop-blur-sm py-24 rounded-2xl border border-slate-700">
-                    <div className="container mx-auto px-8">
-                        <div className="text-center mb-16">
+                <section id="faq" className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-indigo-900 rounded-3xl p-8 md:p-12 shadow-inner border border-indigo-500/20 shadow-indigo-500/10">
+                    <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-blue-500/10 to-transparent"></div>
+                    <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="relative z-10 w-full">
+                        <div className="text-center mb-10">
                             <h2 className="text-3xl md:text-4xl font-bold text-white">
-                                Sıkça Sorulan <span className="text-blue-400">Sorular</span>
+                                Sıkça Sorulan <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text">Sorular</span>
                             </h2>
-                            <p className="mt-4 text-lg text-slate-300 max-w-3xl mx-auto">
+                            <p className="mt-3 text-base md:text-lg text-slate-300 max-w-3xl mx-auto">
                                 Yapay Zeka Emlak Siteniz hakkında aklınıza takılan en yaygın soruları sizin için yanıtladık.
                             </p>
                         </div>
-                        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-x-12">
-                            <div className="lg:col-span-5 space-y-4">
-                                {faqs.slice(0, 2).map((faq, index) => (
+                        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-4 md:gap-5">
+                            <div className="space-y-4 md:space-y-5">
+                                {faqs.slice(0, 6).map((faq, index) => (
                                     <FAQItem key={index} faq={faq} isOpen={openFaqIndex === index} onClick={() => handleFaqClick(index)} />
                                 ))}
                             </div>
-                            <div className="lg:col-span-7 space-y-4 mt-4 lg:mt-0">
-                                {faqs.slice(2, 7).map((faq, index) => (
-                                    <FAQItem key={index + 2} faq={faq} isOpen={openFaqIndex === (index + 2)} onClick={() => handleFaqClick(index + 2)} />
+                            <div className="space-y-4 md:space-y-5">
+                                {faqs.slice(6, 12).map((faq, index) => (
+                                    <FAQItem key={index + 6} faq={faq} isOpen={openFaqIndex === (index + 6)} onClick={() => handleFaqClick(index + 6)} />
                                 ))}
                             </div>
                         </div>
@@ -375,49 +493,66 @@ const AiEmlakSitePage: React.FC = () => {
                 </section>
 
                 {/* CTA Section */}
-                <section className="container mx-auto">
-                    <div className="bg-slate-900 rounded-2xl shadow-2xl relative overflow-hidden">
-                        <div className="grid lg:grid-cols-2 items-center">
-                            <div className="p-8 md:p-12 lg:p-16 text-center lg:text-left z-10">
-                                <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
-                                    <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">Emlak Satışında</span><br /> Yeni Bir Dönem Başlatın
-                                </h2>
-                                <p className="mt-6 text-lg text-slate-300 max-w-lg mx-auto lg:mx-0">
-                                   Yapay zekanın gücüyle potansiyel müşteri yaratma ve satış süreçlerinizi nasıl otomatikleştirebileceğinizi öğrenmek için bugün bizimle iletişime geçin.
-                                </p>
-                                
-                                <div className="mt-8 space-y-4 text-left max-w-md mx-auto lg:mx-0">
-                                    <div className="flex items-center text-slate-200 bg-white/5 p-3 rounded-lg">
-                                        <i className="fas fa-user-plus fa-fw text-green-400 mr-4 text-xl"></i>
-                                        <span><strong>Otomatik</strong> Potansiyel Müşteri</span>
+                <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900/90 to-indigo-950/90 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.5)] border border-indigo-500/30 w-full max-w-7xl mx-auto backdrop-blur-2xl">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] -z-10"></div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -z-10"></div>
+                    
+                    <div className="grid lg:grid-cols-2 items-center relative z-10">
+                        <div className="p-6 md:p-8 lg:p-10 text-center lg:text-left z-10">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+                                <span className="bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">Doğrudan Randevu</span><br /> Devrimine Katılın
+                            </h2>
+                            <p className="mt-3 text-sm md:text-base text-slate-300 max-w-lg mx-auto lg:mx-0">
+                                Yapay zekanın gücüyle komisyon maliyetlerinizi sıfırlayın ve kârlılığınızı hemen artırın.
+                            </p>
+                            
+                            <div className="mt-5 space-y-2 text-left max-w-md mx-auto lg:mx-0">
+                                <div className="flex items-center text-slate-200 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/5 transition-colors hover:bg-white/10 group">
+                                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mr-3 group-hover:bg-emerald-500/30 transition-colors">
+                                        <i className="fas fa-percent text-emerald-400 text-sm"></i>
                                     </div>
-                                    <div className="flex items-center text-slate-200 bg-white/5 p-3 rounded-lg">
-                                        <i className="fas fa-rocket fa-fw text-green-400 mr-4 text-xl"></i>
-                                        <span><strong>%50 Daha Hızlı</strong> Satış Süreci</span>
-                                    </div>
-                                    <div className="flex items-center text-slate-200 bg-white/5 p-3 rounded-lg">
-                                        <i className="fas fa-clock-rotate-left fa-fw text-green-400 mr-4 text-xl"></i>
-                                        <span>Danışmanlar için <strong>%40 Zaman Tasarrufu</strong></span>
-                                    </div>
+                                    <span className="text-xs md:text-sm"><strong>%100 Komisyonsuz</strong> Randevular</span>
                                 </div>
+                                <div className="flex items-center text-slate-200 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/5 transition-colors hover:bg-white/10 group">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mr-3 group-hover:bg-blue-500/30 transition-colors">
+                                        <i className="fas fa-user-astronaut text-blue-400 text-sm"></i>
+                                    </div>
+                                    <span className="text-xs md:text-sm"><strong>7/24 Çalışan</strong> AI Konsiyerj</span>
+                                </div>
+                                <div className="flex items-center text-slate-200 bg-white/5 backdrop-blur-sm p-2.5 rounded-xl border border-white/5 transition-colors hover:bg-white/10 group">
+                                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mr-3 group-hover:bg-purple-500/30 transition-colors">
+                                        <i className="fas fa-hand-holding-heart text-purple-400 text-sm"></i>
+                                    </div>
+                                    <span className="text-xs md:text-sm"><strong>Kişiselleştirilmiş</strong> Müşteri Deneyimi</span>
+                                </div>
+                            </div>
 
-                                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                                  <Link to="/kurumsal" className="w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                                    <i className="fas fa-calendar-check mr-3"></i>
-                                    Ücretsiz Danışmanlık Al
-                                  </Link>
-                                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-600 transition-all transform hover:scale-105 inline-flex items-center justify-center">
-                                    <i className="fab fa-whatsapp mr-3"></i>
-                                    WhatsApp'tan Sor
-                                  </a>
-                                </div>
+                            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                              <Link to="/kurumsal" className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-2.5 px-6 rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center space-x-2 text-sm md:text-base border border-indigo-400/20 hover:border-indigo-400/40">
+                                <i className="fas fa-calendar-check text-indigo-200 text-sm"></i>
+                                <span>Ücretsiz Danışmanlık</span>
+                              </Link>
+                              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-bold py-2.5 px-6 rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center space-x-2 text-sm md:text-base border border-green-400/20 hover:border-green-400/40">
+                                <i className="fab fa-whatsapp text-green-100 text-lg"></i>
+                                <span>WhatsApp'tan Sor</span>
+                              </a>
                             </div>
-                            <div className="relative h-80 lg:h-full flex items-center justify-center overflow-hidden">
-                                 <div className="absolute w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-                                 <div className="absolute w-72 h-72 bg-cyan-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
-                                <img src="https://i.imgur.com/3D1jQ2r.png" alt="Emlak Web Sitesi Arayüzü" className="relative w-4/5 lg:absolute lg:w-full lg:max-w-xl lg:-right-10 rounded-xl shadow-2xl ring-2 ring-white/10 transform lg:rotate-6 transition-transform duration-500 hover:rotate-2 hover:scale-105" />
-                                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-slate-900 via-slate-900/80 to-transparent"></div>
-                            </div>
+                        </div>
+                        <div className="relative h-[400px] lg:h-[500px] flex items-center justify-center overflow-hidden p-6">
+                             <div className="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+                             <div className="absolute w-56 h-56 bg-cyan-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000"></div>
+                             
+                             <div className="relative w-full max-w-[280px] lg:max-w-[360px] aspect-square rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/20 ring-1 ring-white/10 overflow-hidden transform transition-transform duration-500 hover:scale-105 z-10 group">
+                                {sliderImages.map((img, index) => (
+                                    <img 
+                                        key={index}
+                                        src={img} 
+                                        alt={`Emlak Arayüzü ${index + 1}`} 
+                                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-110'} group-hover:scale-105`} 
+                                    />
+                                ))}
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none"></div>
+                             </div>
                         </div>
                     </div>
                 </section>

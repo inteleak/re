@@ -9,6 +9,7 @@ const Header: React.FC = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isDeneModalOpen, setIsDeneModalOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [hoveredSubCategory, setHoveredSubCategory] = useState<string | null>(null);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
 
   return (
@@ -135,23 +136,23 @@ const Header: React.FC = () => {
               {isCategoriesOpen && (
                 <div className="absolute top-full left-0 flex z-[100] mt-[1px] shadow-[0_20px_50px_rgba(0,0,0,0.2)] animate-in fade-in zoom-in-95 duration-200 origin-top">
                   {/* Primary Categories */}
-                  <div className="w-80 bg-gradient-to-b from-white to-slate-50 overflow-hidden py-1.5 border-r border-slate-100 flex flex-col rounded-bl-2xl">
+                  <div className="w-56 bg-gradient-to-b from-white to-slate-50 overflow-hidden py-1.5 border-r border-slate-100 flex flex-col rounded-bl-2xl">
                     {NAV_LINKS.map((link) => (
                       <div 
                         key={link.name} 
-                        className={`group px-5 py-1.5 cursor-pointer transition-all duration-300 border-l-4 ${hoveredCategory === link.name ? 'bg-blue-50/80 border-blue-600 shadow-sm' : 'hover:bg-slate-100/50 border-transparent'}`}
+                        className={`group px-4 py-1.5 cursor-pointer transition-all duration-300 border-l-4 ${hoveredCategory === link.name ? 'bg-blue-50/80 border-blue-600 shadow-sm' : 'hover:bg-slate-100/50 border-transparent'}`}
                         onMouseEnter={() => setHoveredCategory(link.name)}
                       >
                         <Link 
                           to={link.path !== '#' ? link.path : ''} 
                           onClick={(e) => { if(link.path === '#') e.preventDefault(); setIsCategoriesOpen(false); }}
-                          className={`flex items-center justify-between font-extrabold text-[12px] uppercase tracking-wider transition-colors ${hoveredCategory === link.name ? 'text-blue-700' : 'text-slate-800'}`}
+                          className={`flex items-center justify-between font-extrabold text-[10px] uppercase tracking-wider transition-colors ${hoveredCategory === link.name ? 'text-blue-700' : 'text-slate-800'}`}
                         >
                           <span className="flex items-center">
-                             <i className={`fas fa-circle text-[6px] mr-4 transition-transform ${hoveredCategory === link.name ? 'scale-150 text-blue-600' : 'text-slate-300'}`}></i>
+                             <i className={`fas fa-circle text-[4px] mr-2.5 transition-transform ${hoveredCategory === link.name ? 'scale-150 text-blue-600' : 'text-slate-300'}`}></i>
                              {link.name}
                           </span>
-                          {link.children && <i className={`fas fa-chevron-right text-[10px] transition-transform ${hoveredCategory === link.name ? 'text-blue-600 translate-x-1' : 'text-slate-300'}`}></i>}
+                          {link.children && <i className={`fas fa-chevron-right text-[8px] transition-transform ${hoveredCategory === link.name ? 'text-blue-600 translate-x-1' : 'text-slate-300'}`}></i>}
                         </Link>
                       </div>
                     ))}
@@ -159,27 +160,53 @@ const Header: React.FC = () => {
 
                   {/* Secondary Submenu */}
                   {hoveredCategory && NAV_LINKS.find(l => l.name === hoveredCategory)?.children && (
-                    <div className="w-[400px] bg-gradient-to-br from-slate-50 to-slate-100 rounded-br-2xl py-3 px-6 border-l border-slate-200 animate-in fade-in slide-in-from-left-4 duration-300 max-h-[80vh] overflow-y-auto">
+                    <div className="w-[240px] bg-gradient-to-br from-slate-50 to-slate-100 rounded-br-2xl py-3 px-4 border-l border-slate-200 animate-in fade-in slide-in-from-left-4 duration-300 max-h-[85vh]">
                       <div className="mb-3 flex items-center justify-between">
-                        <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.25em] bg-blue-100/50 px-3 py-1.5 rounded-full">{hoveredCategory}</span>
-                        <div className="h-[1px] flex-1 bg-slate-200 ml-4"></div>
+                        <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] bg-blue-100/50 px-2 py-1 rounded-full">{hoveredCategory}</span>
+                        <div className="h-[1px] flex-1 bg-slate-200 ml-2"></div>
                       </div>
-                      <div className="grid grid-cols-1 gap-0.5">
+                      <div className="grid grid-cols-1 gap-0.5 relative" onMouseLeave={() => setHoveredSubCategory(null)}>
                         {NAV_LINKS.find(l => l.name === hoveredCategory)?.children?.map((child) => (
-                          <Link 
+                          <div 
                             key={child.name} 
-                            to={child.path} 
-                            onClick={() => setIsCategoriesOpen(false)}
-                            className="bg-white flex items-center justify-between px-4 py-1.5 rounded-lg hover:bg-gradient-to-r hover:from-slate-900 hover:to-slate-800 text-slate-700 hover:text-white font-bold text-[11px] uppercase tracking-wide group transition-all duration-300 shadow-sm border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-0.5"
+                            className="relative group/sub"
+                            onMouseEnter={() => setHoveredSubCategory(child.name)}
                           >
-                            <span>{child.name}</span>
-                            <i className="fas fa-arrow-right text-[10px] opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-blue-400"></i>
-                          </Link>
+                            <Link 
+                              to={child.path} 
+                              onClick={() => setIsCategoriesOpen(false)}
+                              className="bg-white flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-gradient-to-r hover:from-slate-900 hover:to-slate-800 text-slate-700 hover:text-white font-bold text-[10px] uppercase tracking-wide transition-all duration-300 shadow-sm border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-0.5"
+                            >
+                              <span>{child.name}</span>
+                              {child.children ? (
+                                <i className="fas fa-chevron-right text-[8px] transition-transform text-slate-400 group-hover/sub:text-white group-hover/sub:translate-x-1"></i>
+                              ) : (
+                                <i className="fas fa-arrow-right text-[8px] opacity-0 group-hover/sub:opacity-100 -translate-x-2 group-hover/sub:translate-x-0 transition-all text-blue-400 group-hover/sub:text-white"></i>
+                              )}
+                            </Link>
+
+                            {/* 3rd Level Submenu */}
+                            {child.children && hoveredSubCategory === child.name && (
+                               <div className="absolute left-[95%] top-0 ml-1 w-48 bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] py-2 border border-slate-100 z-[110] animate-in slide-in-from-left-2 fade-in duration-200">
+                                  <div className="absolute -left-2 top-0 bottom-0 w-2"></div> {/* Hover bridge */}
+                                  {child.children.map(subChild => (
+                                     <Link
+                                       key={subChild.name}
+                                       to={subChild.path}
+                                       onClick={() => setIsCategoriesOpen(false)}
+                                       className="block px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600"
+                                     >
+                                       {subChild.name}
+                                     </Link>
+                                  ))}
+                               </div>
+                            )}
+                          </div>
                         ))}
                       </div>
                       
                       {/* Submenu Footer Decorative Element */}
-                      <div className="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between text-[9px] font-bold text-slate-400 tracking-widest uppercase">
+                      <div className="mt-4 pt-3 border-t border-slate-50 flex items-center justify-between text-[8px] font-bold text-slate-400 tracking-widest uppercase">
                          <span>Premium Solutions</span>
                          <div className="flex space-x-1">
                             <div className="w-1 h-1 rounded-full bg-blue-400"></div>
@@ -205,6 +232,7 @@ const Header: React.FC = () => {
                     <Link to="/yapay-zeka-otomasyonlari" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Yapay Zeka Otomasyon</Link>
                     <Link to="/yapay-zeka-uygulamalar" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Sektör Yazılımlarımız (CRM)</Link>
                     <Link to="/yapay-zeka-produksiyon" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Yapay Zeka Prodüksiyon</Link>
+                    <Link to="/web-yazilimlari" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Web Yazılım</Link>
                   </div>
                 </div>
               </div>
@@ -215,9 +243,9 @@ const Header: React.FC = () => {
                 </Link>
                 <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="bg-white rounded-xl shadow-xl w-56 py-2 border border-slate-100 flex flex-col mt-[-5px]">
-                    <a href="https://www.mortanas.com/create" target="_blank" rel="noopener noreferrer" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Create</a>
-                    <Link to="#" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Journal</Link>
-                    <Link to="#" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Social Agent</Link>
+                    <Link to="/projelerimiz/mortanas-create" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Create</Link>
+                    <Link to="/projelerimiz/mortanas-journal" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Journal</Link>
+                    <Link to="/projelerimiz/mortanas-social-agent" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Social Agent</Link>
                   </div>
                 </div>
               </div>
@@ -283,15 +311,32 @@ const Header: React.FC = () => {
                 {link.children && activeMobileSubmenu === link.name && (
                   <div className="pl-4 pb-4 flex flex-col space-y-3 bg-slate-50 rounded-xl mb-4 p-4 mt-1">
                     {link.children.map((child) => (
-                      <Link 
-                        key={child.name} 
-                        to={child.path} 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-[10px] font-bold text-slate-500 hover:text-blue-600 uppercase tracking-widest flex items-center space-x-2"
-                      >
-                        <span className="w-1 h-1 bg-slate-300 rounded-full"></span>
-                        <span>{child.name}</span>
-                      </Link>
+                      <div key={child.name} className="flex flex-col">
+                         <Link 
+                           to={child.path !== '#' ? child.path : ''} 
+                           onClick={(e) => { if(child.path === '#') e.preventDefault(); else setIsMenuOpen(false); }}
+                           className="text-[10px] font-bold text-slate-500 hover:text-blue-600 uppercase tracking-widest flex items-center justify-between"
+                         >
+                           <div className="flex items-center space-x-2">
+                              <span className="w-1 h-1 bg-slate-300 rounded-full"></span>
+                              <span>{child.name}</span>
+                           </div>
+                         </Link>
+                         {child.children && (
+                            <div className="pl-4 pt-3 flex flex-col space-y-3">
+                              {child.children.map(subChild => (
+                                 <Link 
+                                   key={subChild.name}
+                                   to={subChild.path}
+                                   onClick={() => setIsMenuOpen(false)}
+                                   className="text-[9px] font-bold text-slate-400 hover:text-blue-500 uppercase tracking-widest flex items-center space-x-2 before:content-[''] before:w-2 before:h-[1px] before:bg-slate-300 before:mr-2"
+                                 >
+                                   <span>{subChild.name}</span>
+                                 </Link>
+                              ))}
+                            </div>
+                         )}
+                      </div>
                     ))}
                   </div>
                 )}

@@ -30,6 +30,14 @@ import OdemeBasariliPage from './pages/OdemeBasariliPage';
 import OdemeBasarisizPage from './pages/OdemeBasarisizPage';
 import AiEmlakSitePage from './pages/AiEmlakSitePage';
 import AiETicaretSitePage from './pages/AiETicaretSitePage';
+import AiSaglikSitePage from './pages/AiSaglikSitePage';
+import AiEgitimSitePage from './pages/AiEgitimSitePage';
+import AiOtomotivSitePage from './pages/AiOtomotivSitePage';
+import AiHukukSitePage from './pages/AiHukukSitePage';
+import AiRestoranSitePage from './pages/AiRestoranSitePage';
+import AiFitnessSitePage from './pages/AiFitnessSitePage';
+import AiSigortaSitePage from './pages/AiSigortaSitePage';
+import AiDiyetisyenSitePage from './pages/AiDiyetisyenSitePage';
 import DergiPage from './pages/DergiPage';
 import YapayZekaKioskPage from './pages/YapayZekaKioskPage';
 import YapayZekaHologramPage from './pages/YapayZekaHologramPage';
@@ -55,11 +63,16 @@ import YapayZekaSesliAsistanPage from './pages/YapayZekaSesliAsistanPage';
 import OtomasyonSistemiPage from './pages/OtomasyonSistemiPage';
 import YapayZekaOtomasyonlariPage from './pages/YapayZekaOtomasyonlariPage';
 import YapayZekaUygulamalarPage from './pages/YapayZekaUygulamalarPage';
+import YapayZekaProduksiyonPage from './pages/YapayZekaProduksiyonPage';
+import InstagramPortfolioPage from './pages/InstagramPortfolioPage';
 import PaketlerPage from './pages/PaketlerPage';
 import PaketUrunlerPage from './pages/PaketUrunlerPage';
 import PaketDetayPage from './pages/PaketDetayPage';
 import SektorCozumlerimizPage from './pages/SektorCozumlerimizPage';
+import WebYazilimlariPage from './pages/WebYazilimlariPage';
 import FaqPage from './pages/FaqPage';
+import MortanasJournalPage from './pages/MortanasJournalPage';
+import MortanasCreatePage from './pages/MortanasCreatePage';
 
 // Admin Panel Components
 import AdminLayout from './pages/admin/AdminLayout';
@@ -88,7 +101,10 @@ const MainSiteLayout: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/yapay-zeka-otomasyonlari" element={<YapayZekaOtomasyonlariPage />} />
           <Route path="/yapay-zeka-uygulamalar" element={<YapayZekaUygulamalarPage />} />
+          <Route path="/yapay-zeka-produksiyon" element={<YapayZekaProduksiyonPage />} />
+          <Route path="/sosyal-medya/instagram" element={<InstagramPortfolioPage />} />
           <Route path="/sektor-cozumlerimiz" element={<SektorCozumlerimizPage />} />
+          <Route path="/web-yazilimlari" element={<WebYazilimlariPage />} />
           <Route path="/otomasyon/:slug" element={<AutomationDetailPage />} />
           <Route path="/uygulamalar/:slug" element={<ApplicationDetailPage />} />
           <Route path="/sektorler" element={<SectorsPage />} />
@@ -123,6 +139,14 @@ const MainSiteLayout: React.FC = () => {
           <Route path="/yapay-zeka-web/spa" element={<AiSpaSitePage />} />
           <Route path="/yapay-zeka-web/emlak" element={<AiEmlakSitePage />} />
           <Route path="/yapay-zeka-web/eticaret" element={<AiETicaretSitePage />} />
+          <Route path="/yapay-zeka-web/saglik" element={<AiSaglikSitePage />} />
+          <Route path="/yapay-zeka-web/egitim" element={<AiEgitimSitePage />} />
+          <Route path="/yapay-zeka-web/otomotiv" element={<AiOtomotivSitePage />} />
+          <Route path="/yapay-zeka-web/hukuk" element={<AiHukukSitePage />} />
+          <Route path="/yapay-zeka-web/restoran" element={<AiRestoranSitePage />} />
+          <Route path="/yapay-zeka-web/fitness" element={<AiFitnessSitePage />} />
+          <Route path="/yapay-zeka-web/sigorta" element={<AiSigortaSitePage />} />
+          <Route path="/yapay-zeka-web/diyetisyen" element={<AiDiyetisyenSitePage />} />
           <Route path="/yapay-zeka-kiosk" element={<YapayZekaKioskPage />} />
           <Route path="/yapay-zeka-hologram" element={<YapayZekaHologramPage />} />
           <Route path="/yapay-zeka-voice-agent" element={<YapayZekaVoiceAgentPage />} />
@@ -133,6 +157,8 @@ const MainSiteLayout: React.FC = () => {
           <Route path="/canli-destek-sistemi" element={<CanliDestekSistemiPage />} />
           <Route path="/yapay-zeka-sesli-asistan" element={<YapayZekaSesliAsistanPage />} />
           <Route path="/otomasyon-sistemi" element={<OtomasyonSistemiPage />} />
+          <Route path="/projelerimiz/mortanas-journal" element={<MortanasJournalPage />} />
+          <Route path="/projelerimiz/mortanas-create" element={<MortanasCreatePage />} />
         </Routes>
       </main>
       <Footer />
