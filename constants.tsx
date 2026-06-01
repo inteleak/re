@@ -20,14 +20,15 @@ import type {
 } from "./types";
 
 export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
+
   {
     name: "Sosyal Medya Otomasyonu",
     slug: "sosyal-medya-otomasyonu",
-    shortDescription: "Tüm sosyal medya kanallarınızı tek yerden yönetin.",
+    shortDescription: "Markanızın tüm sosyal medya kanallarını yapay zeka destekli tek bir akıllı panelden kusursuzca yönetin, müşteri etkileşimlerini otomatikleştirerek satışlarınızı katlayın.",
     title: "Akıllı Sosyal Medya Yönetim Platformu",
     description:
       "WhatsApp, Instagram, Facebook, Twitter ve E-ticaret platformlarınızı tek bir akıllı panelde birleştirin. İşletmenize özel olarak eğittiğimiz yapay zeka, müşterilerinizle aynı sizin gibi yazışır, 7/24 otomatik olarak sipariş alır, rezervasyon yapar ve tüm müşteri iletişimini kesintisiz yönetir.",
-    imageUrl: "https://mortanas.com/resim/sosyal.png",
+    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 300,
       label: "Başarılı Kurulum",
@@ -258,7 +259,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Mortanas Voice Agent: Sesli Yapay Zeka Asistanı",
     description:
       "İşletmelerin telefon veya çevrimiçi aramalar yoluyla müşterileriyle insan benzeri bir şekilde iletişim kurmasını sağlayan yapay zeka tabanlı bir sistemdir.",
-    imageUrl: "https://mortanas.com/resim/sesli.png",
+    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 300,
       label: "Mutlu İşletme",
@@ -560,7 +561,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Etkileşimli Sesli Chatbot Deneyimi",
     description:
       "Müşterilerinizin metin yazmak yerine konuşarak etkileşim kurmasını sağlayan, yeni nesil bir yapay zeka chatbot çözümüdür. Web sitenize, mobil uygulamanıza veya kiosklarınıza entegre olarak 7/24 sesli destek ve satış asistanlığı yapar.",
-    imageUrl: "https://www.mortanas.com/resim/sesli1.png",
+    imageUrl: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 100,
       label: "Aktif Kurulum",
@@ -726,7 +727,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Gazeteciler ve Basın Kuruluşları için Akıllı Haber Otomasyonu",
     description:
       "Gündemi anlık olarak takip eden, binlerce kaynağı tarayan ve size özel haber özetleri sunan yapay zeka destekli platform. Araştırma süreçlerinizi kısaltın, özel haberler üretmeye odaklanın ve içeriklerinizi anında hedef kitlenize ulaştırın.",
-    imageUrl: "https://www.mortanas.com/resim/haberotomasyon.png",
+    imageUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 50,
       label: "Haber Ajansı Kullanıyor",
@@ -886,7 +887,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Emlak Danışmanları ve Ofisleri için Akıllı Otomasyon Platformu",
     description:
       "Web sitenizden, sosyal medyadan ve emlak portallarından gelen potansiyel müşteri taleplerini tek bir akıllı panelde toplayın. Yapay zeka, 7/24 müşteri sorularını yanıtlar, uygun mülkleri önerir ve danışmanlarınız için randevuları otomatik olarak planlar.",
-    imageUrl: "https://www.mortanas.com/resim/emlakotomasyon.png",
+    imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 150,
       label: "Emlak Ofisi Kullanıyor",
@@ -1032,7 +1033,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Akıllı Stok ve Envanter Yönetim Otomasyonu",
     description:
       "E-ticaret siteniz, pazar yerleri ve fiziksel mağazalarınızdaki stok seviyelerini tek bir merkezden yönetin. Yapay zeka, satış trendlerini analiz ederek minimum stok seviyelerini belirler, tedarikçilere otomatik sipariş geçer ve stok fazlası veya stok tükenmesi riskini ortadan kaldırır.",
-    imageUrl: "https://www.mortanas.com/resim/stokotomasyon.png",
+    imageUrl: "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 200,
       label: "Perakendeci Kullanıyor",
@@ -1298,8 +1299,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli Hibrit Mesajlaşma & Hub Chatbot",
     description:
       "Satış ve destek süreçlerinizin hızını ve dönüşümünü en üst düzeye çıkarmak için WhatsApp ve Instagram platformlarında müşterilerinizle insan benzeri bir akıcılıkla etkileşime geçen gelişmiş yapay zeka entegrasyonu.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 420,
       label: "Aktif Chatbot",
@@ -1447,8 +1447,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Akıllı Çağrı Karşılama & Randevu Otomasyonu",
     description:
       "Gelen çağrıları karşılamak, randevuları organize etmek, rezervasyon almak ve müşteriyi anında bilgilendirmek için tasarlanmış gerçekçi ve anlık sesli yapay zeka çözümü.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 280,
       label: "Entegre Santral",
@@ -1573,8 +1572,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli RPA & Süreç Otomasyonu",
     description:
       "Veri girişi, rapor hazırlama, mutabakat ve dosya transferi gibi rutin iş süreçlerinizi insan müdahalesi olmadan 7/24 hatasız yürüten akıllı yazılım robotları.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 180,
       label: "Süreç Otomatikleştirildi",
@@ -1694,8 +1692,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Akıllı İK, CV Tarama ve Aday Sıralama Asistanı",
     description:
       "İş başvurusu yapan yüzlerce aday arasından aradığınız kriterlere en uygun yetenekleri saniyeler içinde tespit eden, ön elemeleri otomatik gerçekleştiren İK asistanı.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 120,
       label: "İK Departmanı Kullanıyor",
@@ -1805,8 +1802,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Akıllı Dinamik Fiyatlandırma & Envanter Optimizayson Sistemi",
     description:
       "Trendyol, Hepsiburada, Amazon ve Shopify mağazalarınızda rakiplerin fiyat dalgalanmalarını ve stok seviyelerini canlı tarayarak, en yüksek kâr marjıyla Buybox kazanmanızı sağlayan yapay zeka algoritması.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 320,
       label: "E-Ticaret Mağazası",
@@ -1931,8 +1927,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli Akıllı E-Posta Otomasyon Entegrasyonu",
     description:
       "Kullanıcıların web sitenizde veya uygulamanızda gerçekleştirdikleri hareketlere göre otomatik bültenler hazırlayan, kişiye özel indirimler kurgulayan ve açılma oranlarını ölçen pazarlama motoru.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 180,
       label: "Kurumsal Marka",
@@ -2065,8 +2060,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli Online İtibar & Yorum Yanıtlama Asistanı",
     description:
       "İşletmeniz hakkında internetteki tüm platformlarda yazılan yorumları, şikayetleri ve puanları tek bir merkezde toplayıp kurumsal dilinize uygun, markanızı koruyacak şekilde otomatik yanıtlayan akıllı platform.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 240,
       label: "Otel & Restoran",
@@ -2176,8 +2170,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli Toplantı Transkript & Aksiyon Planlama Sistemi",
     description:
       "Zoom, Teams veya Google Meet üzerinden gerçekleşen tüm görüşmelerinizi, ses kayıtlarınızı saniyeler içinde eksiksiz yazıya döken, özet çıkaran ve görev dağılımlarını belirleyen yapay zeka arkadaşınız.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 150,
       label: "Şirket Kullanıyor",
@@ -2297,8 +2290,7 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     title: "Yapay Zeka Destekli Akıllı Ön Muhasebe & Finans Otomasyonu",
     description:
       "Gelen faturaları görsel ve PDF formatlarından otomatik okuyarak sisteme işleyen, cari ödemelerinizi takip eden ve size özel finansal durum raporları sunan akıllı muhasebe entegrasyonu.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     socialProof: {
       count: 310,
       label: "KOBİ Tercih Etti",
@@ -2411,8 +2403,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Turizm",
     description:
       "Tüm otel operasyonlarınızı tek bir yerden yönetin. Rezervasyonlar, oda durumu ve misafir ilişkileri.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Otel Yönetim Platformu",
     longDescription:
       "Otelinizin tüm operasyonel süreçlerini dijitalleştiren, verimliliği artıran ve misafir memnuniyetini en üst düzeye çıkaran hepsi bir arada yönetim çözümüdür.",
@@ -2450,8 +2441,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Sağlık",
     description:
       "Hasta takibi, online randevu ve e-reçete süreçlerinizi merkezi olarak yönetin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551076805-e1869043e560?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Sağlık ve Klinik Yönetim Platformu",
     longDescription:
       "Kliniklerin ve doktorların tüm operasyonel süreçlerini dijitalleştiren, verimliliği artıran hepsi bir arada yönetim çözümüdür.",
@@ -2468,8 +2458,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Eğitim",
     description:
       "Öğrenci, veli ve öğretmen iletişimini, kayıt süreçlerini ve not sistemlerini entegre edin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Eğitim Yönetim Platformu",
     longDescription:
       "Eğitim kurumlarının tüm operasyonel süreçlerini dijitalleştiren, verimliliği artıran hepsi bir arada yönetim çözümüdür.",
@@ -2486,8 +2475,7 @@ export const APPLICATIONS: Application[] = [
     sector: "E-Ticaret",
     description:
       "Bütün satış kanallarınızı, stoklarınızı, sipariş ve müşteri ilişkilerini tek platformda toplayın.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı E-Ticaret Yönetim Platformu",
     longDescription:
       "Birden çok pazaryerini ve kendi sitenizi tek bir panelden yönetin.",
@@ -2505,8 +2493,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Otomotiv",
     description:
       "Galeri, servis kayıtları, test sürüşü planlaması ve müşteri takiplerini dijitalleştirin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1562426509-5044a121aa49?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Otomotiv Yönetim Platformu",
     longDescription:
       "Araç stoğu, parça envanteri ve müşteri taleplerini aynı arayüzde kontrol edin.",
@@ -2524,8 +2511,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Hukuk",
     description:
       "Dava dosya takibi, duruşma ajandası ve müvekkil iletişimi için entegre otomasyon sistemi.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Hukuk Yönetim Platformu",
     longDescription:
       "Dosyaları kolayca bulun, duruşma günü hatırlatmalarını anında alın.",
@@ -2543,8 +2529,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Restoran",
     description:
       "Menü, masa takibi, paket siparişler ve sadakat programını tek panelden yönetin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Restoran Yönetim Platformu",
     longDescription:
       "Müşteri alışkanlıklarını kaydedin ve özel kampanyalar ile cirolarınızı artırın.",
@@ -2562,8 +2547,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Spor & Fitness",
     description:
       "Üyelik planları, stüdyo ders saatleri ve antrenör takvimini dijital arayüzde birleştirin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Fitness Yönetim Platformu",
     longDescription:
       "Salona giriş çıkış verileriyle otomatik aidat hatırlatmaları gerçekleştirin.",
@@ -2580,8 +2564,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Sigorta",
     description:
       "Poliçe yenileme, teklif süreci ve hasar dosya takibini akıllı ekranlardan kontrol edin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66cb85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Sigorta Yönetim Platformu",
     longDescription:
       "Hasar dosyası görsellerini bulutta tutun, müşteri prim günlerini otomatik hatırlayın.",
@@ -2599,8 +2582,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Sağlık & Güzellik",
     description:
       "Sanal randevu, paket satışı, personel prim takibi ve stok sayımını otomatikleştirin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Güzellik Salonu Yönetim Platformu",
     longDescription:
       "Müşteri cilt/saç analiz verilerini saklayıp doğru ürünleri otomatik öneren sistem.",
@@ -2618,8 +2600,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Sağlık",
     description:
       "Vücut kitle analiz verileri, diyet listesi planlama ve seans takibi hepsi bir yerde.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551076805-e1869043e560?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Diyetisyen Yönetim Platformu",
     longDescription:
       "Danışanlara özel mobil uygulama veya portal erişimi ile hedefleri anlık takip edin.",
@@ -2637,8 +2618,7 @@ export const APPLICATIONS: Application[] = [
     sector: "Gayrimenkul",
     description:
       "Portföy detayları, potansiyel alıcı havuzu ve danışman satış skorlarını yönetin.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     title: "Akıllı Emlak Yönetim Platformu",
     longDescription:
       "Sahibinden, Zingat gibi platformlara otomatik ilan entegrasyonu ve dijital kapora sistemi.",
@@ -2720,6 +2700,13 @@ export const TESTIMONIALS = [
     name: "Murat Karahan",
     title: "CTO, Vanguard Technologies",
     avatarUrl: "https://randomuser.me/api/portraits/men/86.jpg",
+  },
+  {
+    quote:
+      "Uçtan uca otomasyon çözümleri sayesinde veri analizlerimizi anlık yapabiliyoruz. Mortanas ile tanıştıktan sonra tamamen veri odaklı bir şirkete dönüştük.",
+    name: "Zeynep Aslan",
+    title: "Veri Analitiği Direktörü, Qubit Systems",
+    avatarUrl: "https://randomuser.me/api/portraits/women/62.jpg",
   },
 ];
 export const ARTICLES = [];

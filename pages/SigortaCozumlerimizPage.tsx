@@ -509,7 +509,7 @@ const SigortaCozumlerimizPage: React.FC = () => {
       title: "AI Sigorta Çözümleri Yönetimi (CRM)",
       description:
         "Tüm Sigorta Acentesi operasyonlarınızı (teklif, Sigorta Acentesi durumu, üye ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/Sigorta Acentesi-yonetimi-crm",
+      path: "/uygulamalar/sigorta-yonetimi-crm",
       features: [
         "Merkezi Üye Veritabanı",
         "Kişiselleştirilmiş Üye Deneyimi",
@@ -521,7 +521,7 @@ const SigortaCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "Müşterilerinize kişiselleştirilmiş deneyimler sunan, 7/24 teklif alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/Sigorta Acentesi",
+      path: "/yapay-zeka-web/sigorta",
       features: [
         "Komisyonsuz teklif Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const SigortaCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek rezervasyonları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "teklif Danışmanı ve Sigorta Acentesi Bilgisi",
@@ -593,7 +593,7 @@ const SigortaCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Poliçe Optimizasyonu",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek Sigorta Acentesi fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/Sigorta Acentesi-yonetimi-crm",
+      path: "/uygulamalar/sigorta-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const SigortaCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/Sigorta Acentesi-yonetimi-crm",
+      path: "/uygulamalar/sigorta-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",

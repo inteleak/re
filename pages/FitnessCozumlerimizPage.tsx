@@ -509,7 +509,7 @@ const FitnessCozumlerimizPage: React.FC = () => {
       title: "AI Fitness Çözümleri Yönetimi (CRM)",
       description:
         "Tüm spor salonu operasyonlarınızı (randevu, spor salonu durumu, üye ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/spor salonu-yonetimi-crm",
+      path: "/uygulamalar/fitness-yonetimi-crm",
       features: [
         "Merkezi Üye Veritabanı",
         "Kişiselleştirilmiş Üye Deneyimi",
@@ -521,7 +521,7 @@ const FitnessCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "Üyelerinize kişiselleştirilmiş deneyimler sunan, 7/24 randevu alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/spor salonu",
+      path: "/yapay-zeka-web/fitness",
       features: [
         "Komisyonsuz Randevu Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const FitnessCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek rezervasyonları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "Randevu Danışmanı ve Spor Salonu Bilgisi",
@@ -593,7 +593,7 @@ const FitnessCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Ekipman Optimizasyonu",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek spor salonu fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/spor salonu-yonetimi-crm",
+      path: "/uygulamalar/fitness-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const FitnessCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/spor salonu-yonetimi-crm",
+      path: "/uygulamalar/fitness-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",

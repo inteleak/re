@@ -509,7 +509,7 @@ const SaglikCozumlerimizPage: React.FC = () => {
       title: "AI Klinik Yönetimi (CRM)",
       description:
         "Tüm klinik operasyonlarınızı (randevu, muayene durumu, hasta ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/klinik-yonetimi-crm",
+      path: "/uygulamalar/saglik-yonetimi-crm",
       features: [
         "Merkezi Müşteri Veritabanı",
         "Kişiselleştirilmiş Hasta Deneyimi",
@@ -521,7 +521,7 @@ const SaglikCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "Hastalarınıza kişiselleştirilmiş deneyimler sunan, 7/24 randevu alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/klinik",
+      path: "/yapay-zeka-web/saglik",
       features: [
         "Komisyonsuz Randevu Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const SaglikCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek satışları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "Rehberlik ve Klinik Bilgisi",
@@ -593,7 +593,7 @@ const SaglikCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Kapasite Yönetimi",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek muayene fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/klinik-yonetimi-crm",
+      path: "/uygulamalar/saglik-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const SaglikCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/klinik-yonetimi-crm",
+      path: "/uygulamalar/saglik-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",

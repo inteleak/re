@@ -509,7 +509,7 @@ const ETicaretCozumlerimizPage: React.FC = () => {
       title: "AI E-Ticaret Yönetimi (CRM)",
       description:
         "Tüm e-ticaret operasyonlarınızı (sipariş, mağaza durumu, müşteri ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/e-ticaret-yonetimi-crm",
+      path: "/uygulamalar/eticaret-yonetimi-crm",
       features: [
         "Merkezi Müşteri Veritabanı",
         "Kişiselleştirilmiş Müşteri Deneyimi",
@@ -521,7 +521,7 @@ const ETicaretCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "Müşterilerinize kişiselleştirilmiş deneyimler sunan, 7/24 sipariş alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/e-ticaret",
+      path: "/yapay-zeka-web/eticaret",
       features: [
         "Komisyonsuz Sipariş Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const ETicaretCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek satışları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "Satış Danışmanı ve Mağaza Bilgisi",
@@ -593,7 +593,7 @@ const ETicaretCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Stok Optimizasyonu",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek mağaza fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/e-ticaret-yonetimi-crm",
+      path: "/uygulamalar/eticaret-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const ETicaretCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/e-ticaret-yonetimi-crm",
+      path: "/uygulamalar/eticaret-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",

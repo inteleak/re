@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import CreativeStudioSection from '../components/CreativeStudioSection';
 
 const cardThemes = [
     { // Blue
@@ -272,6 +273,10 @@ const YapayZekaProduksiyonPage: React.FC = () => {
                         </a>
                     </div>
                 </motion.div>
+
+                <div className="mt-20 border-t border-slate-800/80 pt-10">
+                    <CreativeStudioSection />
+                </div>
             </div>
         </div>
     );

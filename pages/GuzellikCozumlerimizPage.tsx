@@ -509,7 +509,7 @@ const GuzellikCozumlerimizPage: React.FC = () => {
       title: "AI Güzellik Salonu Çözümleri Yönetimi (CRM)",
       description:
         "Tüm Güzellik Merkezi operasyonlarınızı (Randevu, Güzellik Merkezi durumu, üye ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/Güzellik Merkezi-yonetimi-crm",
+      path: "/uygulamalar/guzellik-yonetimi-crm",
       features: [
         "Merkezi Üye Veritabanı",
         "Kişiselleştirilmiş Üye Deneyimi",
@@ -521,7 +521,7 @@ const GuzellikCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "Müşterilerinize kişiselleştirilmiş deneyimler sunan, 7/24 Randevu alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/Güzellik Merkezi",
+      path: "/yapay-zeka-web/spa",
       features: [
         "Komisyonsuz Randevu Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const GuzellikCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek rezervasyonları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "Randevu Danışmanı ve Güzellik Merkezi Bilgisi",
@@ -593,7 +593,7 @@ const GuzellikCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Paket Optimizasyonu",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek Güzellik Merkezi fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/Güzellik Merkezi-yonetimi-crm",
+      path: "/uygulamalar/guzellik-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const GuzellikCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/Güzellik Merkezi-yonetimi-crm",
+      path: "/uygulamalar/guzellik-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",

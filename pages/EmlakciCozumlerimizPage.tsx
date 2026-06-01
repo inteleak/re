@@ -509,7 +509,7 @@ const EmlakciCozumlerimizPage: React.FC = () => {
       title: "AI Emlakçı Çözümleri Yönetimi (CRM)",
       description:
         "Tüm emlakçı operasyonlarınızı (randevu, ofis durumu, alıcı/kiracı ilişkileri) tek yerden yönetin.",
-      path: "/uygulamalar/emlakçı-yonetimi-crm",
+      path: "/uygulamalar/emlak-yonetimi-crm",
       features: [
         "Merkezi Alıcı/Kiracı Veritabanı",
         "Kişiselleştirilmiş Alıcı/Kiracı Deneyimi",
@@ -521,7 +521,7 @@ const EmlakciCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Web Sitesi",
       description:
         "alıcı ve kiracılarınıza kişiselleştirilmiş deneyimler sunan, 7/24 randevu alan akıllı bir web sitesi.",
-      path: "/yapay-zeka-web/emlakçı",
+      path: "/yapay-zeka-web/emlak",
       features: [
         "Komisyonsuz randevu Motoru",
         "Dinamik İçerik Optimizasyonu",
@@ -569,7 +569,7 @@ const EmlakciCozumlerimizPage: React.FC = () => {
       title: "Yapay Zeka Chatbot",
       description:
         "Web sitenizdeki ziyaretçileri 7/24 karşılayın, sorularını yanıtlayın ve rezervasyona yönlendirerek satış/kiralamaları artırın.",
-      path: "/uygulamalar/yapay-zeka-chatbot",
+      path: "/otomasyon/yapay-zeka-chatbot",
       features: [
         "İnsan Benzeri Diyaloglar",
         "Satış Danışmanı ve Ofis Bilgisi",
@@ -593,7 +593,7 @@ const EmlakciCozumlerimizPage: React.FC = () => {
       title: "AI Destekli Portföy Optimizasyonu",
       description:
         "Piyasa talebini, rakip fiyatlarını ve etkinlikleri analiz ederek ofis fiyatlarınızı dinamik olarak optimize edin.",
-      path: "/uygulamalar/emlakçı-yonetimi-crm",
+      path: "/uygulamalar/emlak-yonetimi-crm",
       features: [
         "Dinamik Fiyatlandırma",
         "Rakip Analitiği (Rate Shopper)",
@@ -605,7 +605,7 @@ const EmlakciCozumlerimizPage: React.FC = () => {
       title: "İtibar ve Yorum Yönetimi",
       description:
         "Booking, Google, TripAdvisor gibi platformlardaki yorumları tek bir panelden takip edin ve anında yanıtlayın.",
-      path: "/uygulamalar/emlakçı-yonetimi-crm",
+      path: "/uygulamalar/emlak-yonetimi-crm",
       features: [
         "Merkezi Yorum Paneli",
         "Yapay Zeka ile Otomatik Yanıt",
