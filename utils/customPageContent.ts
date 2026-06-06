@@ -35,6 +35,7 @@ export interface FAQ {
 export const getBusinessBenefits = (slug: string): BusinessBenefit[] => {
     switch (slug) {
         case 'yapay-zeka-chatbot':
+        case 'sosyal-medya-otomasyonu':
             return [
                 { title: "7/24 Aktif Satış Ruhu", desc: "Gece yarısı bile gelen soruları anında yanıtlayıp satışı kapatın.", icon: "fas fa-moon", color: "blue" },
                 { title: "İnsan Maliyetini Azaltın", desc: "Yüzlerce mesajı saniyeler içinde cevaplayın, canlı destek yükünüzü %85 oranında düşürün.", icon: "fas fa-users-slash", color: "red" },
@@ -79,6 +80,7 @@ export const getBusinessBenefits = (slug: string): BusinessBenefit[] => {
 export const getCustomerJourney = (slug: string): JourneyStep[] => {
     switch (slug) {
         case 'yapay-zeka-chatbot':
+        case 'sosyal-medya-otomasyonu':
             return [
                 { icon: 'fab fa-instagram', time: '23:45', title: 'Mesaj Gelir', description: 'Müşteri, Instagram DM veya WhatsApp üzerinden ürünle ilgili saniyesinde mesaj atar.' },
                 { icon: 'fas fa-bolt', time: '23:45', title: 'Anında Yanıt', description: 'Yapay zeka 1 saniyeden kısa sürede, ürün özelliklerini ve fiyatını doğal bir dille aktarır.' },
@@ -144,6 +146,7 @@ export const getCustomerJourney = (slug: string): JourneyStep[] => {
 export const getTargetAudience = (slug: string): TargetAudience[] => {
     switch (slug) {
         case 'yapay-zeka-chatbot':
+        case 'sosyal-medya-otomasyonu':
             return [
                 { icon: 'fas fa-shopping-bag', name: 'E-Ticaret Markaları' },
                 { icon: 'fas fa-heartbeat', name: 'Klinik ve Doktorlar' },

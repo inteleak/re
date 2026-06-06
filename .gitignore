@@ -9,7 +9,23 @@ lerna-debug.log*
 
 node_modules
 dist
+build
 dist-ssr
+.vite
+temp
+temp/
+
+# Script remnants
+*.cjs
+*.js
+!vite.config.js
+!tailwind.config.js
+!postcss.config.js
+
+# Environment files
+.env
+.env.local
+.env.*.local
 *.local
 
 # Editor directories and files

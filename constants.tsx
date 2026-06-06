@@ -1,38 +1,18 @@
-import React from "react";
-// FIX: Imported PricingPlan type
-import type {
-  NavLink,
-  Feature,
-  Sector,
-  Integration,
-  Testimonial,
-  AutomationSolution,
-  Application,
-  Reference,
-  TeamMember,
-  PricingPlan,
-  Article,
-  Milestone,
-  ValueProposition,
-  FAQ,
-  PressMention,
-  SectorPricingPlan,
-} from "./types";
+import React from 'react';
+import type { 
+  Application, Testimonial, FAQ, Reference, TeamMember, Article, 
+  Milestone, ValueProposition, PressMention, AutomationSolution, 
+  SectorPricingPlan 
+} from './types';
 
 export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
-
   {
-    name: "Sosyal Medya Otomasyonu",
+    name: "Sosyal Medya Otomasyonu (AI CRM)",
     slug: "sosyal-medya-otomasyonu",
-    shortDescription: "Markanızın tüm sosyal medya kanallarını yapay zeka destekli tek bir akıllı panelden kusursuzca yönetin, müşteri etkileşimlerini otomatikleştirerek satışlarınızı katlayın.",
-    title: "Akıllı Sosyal Medya Yönetim Platformu",
-    description:
-      "WhatsApp, Instagram, Facebook, Twitter ve E-ticaret platformlarınızı tek bir akıllı panelde birleştirin. İşletmenize özel olarak eğittiğimiz yapay zeka, müşterilerinizle aynı sizin gibi yazışır, 7/24 otomatik olarak sipariş alır, rezervasyon yapar ve tüm müşteri iletişimini kesintisiz yönetir.",
-    imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    socialProof: {
-      count: 300,
-      label: "Başarılı Kurulum",
-    },
+    shortDescription: "Tüm sosyal medya hesaplarınızı tek bir birleşik platformdan yönetin, LLM ve CRM entegrasyonuyla 7/24 otomatik cevaplar verin.",
+    title: "Yapay Zeka Destekli Hepsi Bir Arada Sosyal Medya & CRM Otomasyonu",
+    description: "Tüm sosyal medya kanallarınızı tek bir yerde toplayarak kontrolü elinize alın. LLM destekli akıllı asistan ile müşterilerinizi 7/24 otomatik cevaplayın, CRM entegrasyonu sayesinde verilerinizi ve yönetimi tamamen elinizde tutun.",
+    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     keyFeatures: [], // This is now replaced by whyChooseUs
     problemSolution: [
       {
@@ -57,27 +37,27 @@ export const AUTOMATION_SOLUTIONS: AutomationSolution[] = [
     whyChooseUs: [
       {
         icon: "fas fa-brain",
-        title: "İşletmeye Özel Yapay Zeka",
+        title: "Gelişmiş LLM & Yapay Zeka",
         description:
-          "Yapay zekamızı sizin işletmenizin ürünleri, hizmetleri ve iletişim diliyle eğitiyoruz. Müşterileriniz bir robotla değil, markanızın uzman bir temsilcisiyle konuştuğunu hisseder.",
+          "Yapay zekamızı sizin işletmenizin ürünleri, hizmetleri ve iletişim diliyle eğitiyoruz. Müşterileriniz basit sorgularla değil, LLM destekli uzman bir temsilciyle doğal ve akıcı şekilde diyaloğa girer.",
       },
       {
         icon: "fas fa-boxes-stacked",
-        title: "Tüm Kanallar Tek Yerde",
+        title: "Tüm Kanallar Tek Platformda",
         description:
-          "WhatsApp, Instagram, Facebook, Twitter ve daha fazlasını tek bir panelden yönetin. Dağınıklığa son verin, hiçbir mesajı veya fırsatı gözden kaçırmayın.",
+          "WhatsApp, Instagram DM, Facebook Messenger, Telegram ve diğer bütün sosyal kanallarınızı tek bir birleşik gelen kutusundan yönetin. Dağınıklığa son verin, tüm hesapları tek merkezden kontrol edin.",
       },
       {
-        icon: "fas fa-comments",
-        title: "İnsan Gibi İletişim",
+        icon: "fas fa-database",
+        title: "CRM Entegrasyonu & Tam Veri Sahipliği",
         description:
-          "Yapay zekamız, sadece yanıt vermekle kalmaz; doğal, akıcı ve samimi bir dille diyalog kurar, müşteri taleplerini anlar ve çözüm üretir.",
+          "Diğer standart sosyal medya otomasyonlarının aksine, tüm konuşma geçmişi, kullanıcı bilgileri ve müşteri eğilimleri size ait bir CRM havuzunda toplanır. Verileriniz asla dışarı sızmaz, mülkiyet tamamen sizdedir.",
       },
       {
-        icon: "fas fa-robot",
-        title: "Uçtan Uca Otomasyon",
+        icon: "fas fa-user-shield",
+        title: "Yönetim Tamamen Müşteridedir",
         description:
-          "Otomatik olarak sipariş alır, rezervasyon yapar, kargo takibi bilgisi verir, konum atar ve sıkça sorulan tüm soruları yanıtlar. İşletmeniz siz uyurken bile çalışır.",
+          "Kapalı devre altyapımız sayesinde sistemin yönetimi, güncellemesi ve veri akışı bütünüyle sizin kontrolünüz altındadır. Üçüncü parti servislerin getirdiği güvenlik ve gizlilik risklerini sıfıra indirin.",
       },
     ],
     howItWorks: [
@@ -2636,27 +2616,191 @@ export const NAV_LINKS = [
   { name: "Ana Sayfa", path: "/" },
   { name: "Kurumsal", path: "/kurumsal" },
   {
-    name: "Sektör Yazılımlarımız (CRM)",
+    name: "Sektör Çözümlerimiz",
     path: "/yapay-zeka-uygulamalar",
     children: [
-      { name: "Otel Yönetimi", path: "/uygulamalar/otel-yonetimi-crm" },
-      { name: "Sağlık Yönetimi", path: "/uygulamalar/saglik-yonetimi-crm" },
-      { name: "Eğitim Yönetimi", path: "/uygulamalar/egitim-yonetimi-crm" },
-      {
-        name: "E-Ticaret Yönetimi",
-        path: "/uygulamalar/eticaret-yonetimi-crm",
+      { 
+        name: "Otel Çözümleri", 
+        path: "/uygulamalar/otel-yonetimi-crm",
+        children: [
+          { name: "AI Otel Yönetimi (CRM)", path: "/uygulamalar/otel-yonetimi-crm#crm" },
+          { name: "Yapay Zeka Web Sitesi", path: "/uygulamalar/otel-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/otel-yonetimi-crm#social" },
+          { name: "Sesli Müşteri Hizmetleri", path: "/uygulamalar/otel-yonetimi-crm#voice" },
+          { name: "Sesli Chatbot Otomasyonu", path: "/uygulamalar/otel-yonetimi-crm#voicebot" },
+          { name: "Yapay Zeka Chatbot", path: "/uygulamalar/otel-yonetimi-crm#chatbot" },
+          { name: "Stok Yönetimi", path: "/uygulamalar/otel-yonetimi-crm#stock" },
+          { name: "AI Destekli Gelir Yönetimi", path: "/uygulamalar/otel-yonetimi-crm#revenue" },
+          { name: "İtibar ve Yorum Yönetimi", path: "/uygulamalar/otel-yonetimi-crm#reputation" }
+        ]
       },
-      { name: "Otomotiv Yönetimi", path: "/uygulamalar/otomotiv-yonetimi-crm" },
-      { name: "Hukuk Yönetimi", path: "/uygulamalar/hukuk-yonetimi-crm" },
-      { name: "Restoran Yönetimi", path: "/uygulamalar/restoran-yonetimi-crm" },
-      { name: "Fitness Yönetimi", path: "/uygulamalar/fitness-yonetimi-crm" },
-      { name: "Sigorta Yönetimi", path: "/uygulamalar/sigorta-yonetimi-crm" },
-      { name: "Güzellik Salonu", path: "/uygulamalar/guzellik-yonetimi-crm" },
-      { name: "Diyetisyen", path: "/uygulamalar/diyetisyen-yonetimi-crm" },
-      { name: "Emlak Yönetimi", path: "/uygulamalar/emlak-yonetimi-crm" },
-    ],
+      { 
+        name: "Sağlık Çözümleri", 
+        path: "/uygulamalar/saglik-yonetimi-crm",
+        children: [
+          { name: "AI Klinik Yönetimi (CRM)", path: "/uygulamalar/saglik-yonetimi-crm#crm" },
+          { name: "Yapay Zeka Web Sitesi", path: "/uygulamalar/saglik-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/saglik-yonetimi-crm#social" },
+          { name: "Randevu ve Hasta Takibi", path: "/uygulamalar/saglik-yonetimi-crm#appointment" },
+          { name: "AI Çağrı Merkezi", path: "/uygulamalar/saglik-yonetimi-crm#callcenter" },
+          { name: "WhatsApp Chatbot", path: "/uygulamalar/saglik-yonetimi-crm#chatbot" },
+          { name: "Gelir Yönetimi", path: "/uygulamalar/saglik-yonetimi-crm#revenue" },
+          { name: "E-Reçete Entegrasyonu", path: "/uygulamalar/saglik-yonetimi-crm#prescription" },
+          { name: "İtibar Yönetimi", path: "/uygulamalar/saglik-yonetimi-crm#reputation" }
+        ]
+      },
+      { 
+        name: "Eğitim Çözümleri", 
+        path: "/uygulamalar/egitim-yonetimi-crm",
+        children: [
+          { name: "AI Öğrenci İşleri (CRM)", path: "/uygulamalar/egitim-yonetimi-crm#crm" },
+          { name: "Akıllı Web Sitesi", path: "/uygulamalar/egitim-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/egitim-yonetimi-crm#social" },
+          { name: "Sınav & Not Takip", path: "/uygulamalar/egitim-yonetimi-crm#exam" },
+          { name: "AI Veli Asistanı", path: "/uygulamalar/egitim-yonetimi-crm#parent" },
+          { name: "Öğrenci Chatbot", path: "/uygulamalar/egitim-yonetimi-crm#student" },
+          { name: "Gelir & Aidat Takibi", path: "/uygulamalar/egitim-yonetimi-crm#revenue" },
+          { name: "Yoklama & Kayıt", path: "/uygulamalar/egitim-yonetimi-crm#attendance" },
+          { name: "Veli Memnuniyeti", path: "/uygulamalar/egitim-yonetimi-crm#satisfaction" }
+        ]
+      },
+      {
+        name: "E-Ticaret Çözümleri",
+        path: "/uygulamalar/eticaret-yonetimi-crm",
+        children: [
+          { name: "AI Sipariş Yönetimi", path: "/uygulamalar/eticaret-yonetimi-crm#crm" },
+          { name: "Akıllı E-Ticaret Sitesi", path: "/uygulamalar/eticaret-yonetimi-crm#web" },
+          { name: "Reklam Otomasyonu", path: "/uygulamalar/eticaret-yonetimi-crm#social" },
+          { name: "7/24 Çağrı Merkezi", path: "/uygulamalar/eticaret-yonetimi-crm#callcenter" },
+          { name: "WhatsApp Chatbot", path: "/uygulamalar/eticaret-yonetimi-crm#chatbot" },
+          { name: "Dinamik Fiyatlandırma", path: "/uygulamalar/eticaret-yonetimi-crm#pricing" },
+          { name: "Sepet Terk Uyarıları", path: "/uygulamalar/eticaret-yonetimi-crm#cart" },
+          { name: "Akıllı Stok Yönetimi", path: "/uygulamalar/eticaret-yonetimi-crm#stock" },
+          { name: "İade Otomasyonu", path: "/uygulamalar/eticaret-yonetimi-crm#returns" }
+        ]
+      },
+      { 
+        name: "Otomotiv Çözümleri", 
+        path: "/uygulamalar/otomotiv-yonetimi-crm",
+        children: [
+          { name: "AI Servis & Bayi CRM", path: "/uygulamalar/otomotiv-yonetimi-crm#crm" },
+          { name: "Akıllı Galeri Sitesi", path: "/uygulamalar/otomotiv-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/otomotiv-yonetimi-crm#social" },
+          { name: "AI Randevu Merkezi", path: "/uygulamalar/otomotiv-yonetimi-crm#appointment" },
+          { name: "WhatsApp Asistanı", path: "/uygulamalar/otomotiv-yonetimi-crm#chatbot" },
+          { name: "Yedek Parça Stok", path: "/uygulamalar/otomotiv-yonetimi-crm#stock" },
+          { name: "Değerleme Botu", path: "/uygulamalar/otomotiv-yonetimi-crm#pricing" },
+          { name: "Teklif Otomasyonu", path: "/uygulamalar/otomotiv-yonetimi-crm#offer" },
+          { name: "Müşteri Takip Sistemi", path: "/uygulamalar/otomotiv-yonetimi-crm#tracking" }
+        ]
+      },
+      { 
+        name: "Hukuk Çözümleri", 
+        path: "/uygulamalar/hukuk-yonetimi-crm",
+        children: [
+          { name: "AI Müvekkil CRM", path: "/uygulamalar/hukuk-yonetimi-crm#crm" },
+          { name: "Akıllı Hukuk Sitesi", path: "/uygulamalar/hukuk-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/hukuk-yonetimi-crm#social" },
+          { name: "Hukuki AI Asistan", path: "/uygulamalar/hukuk-yonetimi-crm#chatbot" },
+          { name: "Sesli Çağrı Merkezi", path: "/uygulamalar/hukuk-yonetimi-crm#callcenter" },
+          { name: "Dava & Süre Takibi", path: "/uygulamalar/hukuk-yonetimi-crm#tracking" },
+          { name: "Mevzuat Analiz", path: "/uygulamalar/hukuk-yonetimi-crm#analysis" },
+          { name: "Muhasebe Takibi", path: "/uygulamalar/hukuk-yonetimi-crm#accounting" },
+          { name: "Belge Sınıflandırma", path: "/uygulamalar/hukuk-yonetimi-crm#documents" }
+        ]
+      },
+      { 
+        name: "Restoran Çözümleri", 
+        path: "/uygulamalar/restoran-yonetimi-crm",
+        children: [
+          { name: "AI Restoran CRM", path: "/uygulamalar/restoran-yonetimi-crm#crm" },
+          { name: "Akıllı Restoran Sitesi", path: "/uygulamalar/restoran-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/restoran-yonetimi-crm#social" },
+          { name: "AI Rezervasyon Merkezi", path: "/uygulamalar/restoran-yonetimi-crm#reservation" },
+          { name: "WhatsApp Sipariş Botu", path: "/uygulamalar/restoran-yonetimi-crm#chatbot" },
+          { name: "Stok & Tedarik Yönetimi", path: "/uygulamalar/restoran-yonetimi-crm#stock" },
+          { name: "Dinamik Menü", path: "/uygulamalar/restoran-yonetimi-crm#menu" },
+          { name: "Motor Kurye Optimizasyonu", path: "/uygulamalar/restoran-yonetimi-crm#delivery" },
+          { name: "İtibar Yönetimi", path: "/uygulamalar/restoran-yonetimi-crm#reputation" }
+        ]
+      },
+      { 
+        name: "Fitness Çözümleri", 
+        path: "/uygulamalar/fitness-yonetimi-crm",
+        children: [
+          { name: "AI Üye CRM", path: "/uygulamalar/fitness-yonetimi-crm#crm" },
+          { name: "Akıllı Salon Sitesi", path: "/uygulamalar/fitness-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/fitness-yonetimi-crm#social" },
+          { name: "Eğitim & Diyet Chatbot", path: "/uygulamalar/fitness-yonetimi-crm#chatbot" },
+          { name: "Randevu Takibi", path: "/uygulamalar/fitness-yonetimi-crm#appointment" },
+          { name: "Sesli Asistan", path: "/uygulamalar/fitness-yonetimi-crm#voice" },
+          { name: "Gelir & Aidat Yönetimi", path: "/uygulamalar/fitness-yonetimi-crm#revenue" },
+          { name: "Ekipman Stok Yönetimi", path: "/uygulamalar/fitness-yonetimi-crm#stock" },
+          { name: "Üye Memnuniyeti", path: "/uygulamalar/fitness-yonetimi-crm#reputation" }
+        ]
+      },
+      { 
+        name: "Sigorta Çözümleri", 
+        path: "/uygulamalar/sigorta-yonetimi-crm",
+        children: [
+          { name: "AI Poliçe CRM", path: "/uygulamalar/sigorta-yonetimi-crm#crm" },
+          { name: "Akıllı Sigorta Sitesi", path: "/uygulamalar/sigorta-yonetimi-crm#web" },
+          { name: "Sosyal Medya Kampanyaları", path: "/uygulamalar/sigorta-yonetimi-crm#social" },
+          { name: "Yapay Zeka Hasar Danışmanı", path: "/uygulamalar/sigorta-yonetimi-crm#claims" },
+          { name: "Çağrı Merkezi Asistanı", path: "/uygulamalar/sigorta-yonetimi-crm#callcenter" },
+          { name: "Poliçe Yenileme", path: "/uygulamalar/sigorta-yonetimi-crm#renewal" },
+          { name: "Fiyat Karşılaştırma Botu", path: "/uygulamalar/sigorta-yonetimi-crm#pricing" },
+          { name: "Risk & Prim Hesaplama", path: "/uygulamalar/sigorta-yonetimi-crm#calculator" },
+          { name: "Performans Analizi", path: "/uygulamalar/sigorta-yonetimi-crm#analytics" }
+        ]
+      },
+      { 
+        name: "Güzellik Salonu Çözümleri", 
+        path: "/uygulamalar/guzellik-yonetimi-crm",
+        children: [
+          { name: "AI Salon CRM", path: "/uygulamalar/guzellik-yonetimi-crm#crm" },
+          { name: "Profesyonel Web Sitesi", path: "/uygulamalar/guzellik-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/guzellik-yonetimi-crm#social" },
+          { name: "AI Randevu Yönetimi", path: "/uygulamalar/guzellik-yonetimi-crm#appointment" },
+          { name: "Çağrı Merkezi & Asistan", path: "/uygulamalar/guzellik-yonetimi-crm#callcenter" },
+          { name: "Satış ve Upsell Botu", path: "/uygulamalar/guzellik-yonetimi-crm#sales" },
+          { name: "Stok Yönetimi", path: "/uygulamalar/guzellik-yonetimi-crm#stock" },
+          { name: "Personel Performansı", path: "/uygulamalar/guzellik-yonetimi-crm#staff" },
+          { name: "Müşteri Analizi", path: "/uygulamalar/guzellik-yonetimi-crm#analytics" }
+        ]
+      },
+      { 
+        name: "Diyetisyen Çözümleri", 
+        path: "/uygulamalar/diyetisyen-yonetimi-crm",
+        children: [
+          { name: "AI Danışan CRM", path: "/uygulamalar/diyetisyen-yonetimi-crm#crm" },
+          { name: "Akıllı Diyetisyen Sitesi", path: "/uygulamalar/diyetisyen-yonetimi-crm#web" },
+          { name: "Sosyal Medya Etkileşim", path: "/uygulamalar/diyetisyen-yonetimi-crm#social" },
+          { name: "Tarif & Beslenme Botu", path: "/uygulamalar/diyetisyen-yonetimi-crm#bot" },
+          { name: "Randevu Takip Asistanı", path: "/uygulamalar/diyetisyen-yonetimi-crm#appointment" },
+          { name: "Çağrı Merkezi & WhatsApp", path: "/uygulamalar/diyetisyen-yonetimi-crm#callcenter" },
+          { name: "Tartı Sensör Entegrasyonu", path: "/uygulamalar/diyetisyen-yonetimi-crm#sensor" },
+          { name: "Tahsilat Takibi", path: "/uygulamalar/diyetisyen-yonetimi-crm#revenue" },
+          { name: "Motivasyon Takip Sistemi", path: "/uygulamalar/diyetisyen-yonetimi-crm#motivation" }
+        ]
+      },
+      { 
+        name: "Emlak Çözümleri", 
+        path: "/uygulamalar/emlak-yonetimi-crm",
+        children: [
+          { name: "AI Emlak CRM", path: "/uygulamalar/emlak-yonetimi-crm#crm" },
+          { name: "Gayrimenkul İlan Sitesi", path: "/uygulamalar/emlak-yonetimi-crm#web" },
+          { name: "Sosyal Medya Otomasyonu", path: "/uygulamalar/emlak-yonetimi-crm#social" },
+          { name: "AI Çağrı Asistanı", path: "/uygulamalar/emlak-yonetimi-crm#callcenter" },
+          { name: "WhatsApp Gayrimenkul Botu", path: "/uygulamalar/emlak-yonetimi-crm#chatbot" },
+          { name: "Akıllı Portföy Yönetimi", path: "/uygulamalar/emlak-yonetimi-crm#portfolio" },
+          { name: "Müşteri & İlan Eşleştirme", path: "/uygulamalar/emlak-yonetimi-crm#matching" },
+          { name: "Değerleme Aracı", path: "/uygulamalar/emlak-yonetimi-crm#valuation" },
+          { name: "Ajanda Takibi", path: "/uygulamalar/emlak-yonetimi-crm#agenda" }
+        ]
+      }
+    ]
   },
-  { name: "Yapay Zeka Otomasyonları", path: "/yapay-zeka-otomasyonlari" },
   { name: "Fiyatlandırma", path: "/fiyatlandirma" },
   { name: "İletişim", path: "/iletisim" },
 ];
@@ -2712,7 +2856,38 @@ export const TESTIMONIALS = [
 export const ARTICLES = [];
 export const TRAINING_PARTNER_LOGOS = [];
 export const HOME_FAQS = [];
-export const FEATURES = [];
+export const FEATURES = [
+  {
+    icon: <i className="fas fa-boxes-stacked"></i>,
+    title: "Tüm Kanallar Tek Ekranda",
+    description: "WhatsApp, Instagram, Facebook ve web sitenizden gelen tüm talepleri tek bir birleşik gelen kutusu üzerinden yönetin ve yapay zekaya devredin."
+  },
+  {
+    icon: <i className="fas fa-robot text-purple-400"></i>,
+    title: "Otonom Yapay Zeka (LLM)",
+    description: "İşletmenizin detaylarıyla eğitilmiş akıllı botlar, müşterilerinizle gerçek bir çalışan gibi doğal, akıcı ve satış odaklı iletişim kurar."
+  },
+  {
+    icon: <i className="fas fa-chart-pie text-cyan-400"></i>,
+    title: "Gelişmiş CRM & Analitik",
+    description: "Tüm müşteri verilerinizi güvenli bir şekilde saklayın, dönüşümleri anlık ölçün ve satış süreçlerinizi veri odaklı kararlarla yukarı taşıyın."
+  },
+  {
+    icon: <i className="fas fa-clock text-emerald-400"></i>,
+    title: "7/24 Kesintisiz Satış",
+    description: "Mesai saatleri dışında veya resmi tatillerde bile hiçbir müşterinizi veya potansiyel satışı kaçırmayın. Sistem aralıksız sipariş ve randevu alır."
+  },
+  {
+    icon: <i className="fas fa-bolt text-yellow-400"></i>,
+    title: "Sıfır Bekleme & Anında Yanıt",
+    description: "Yoğun kampanya dönemlerinde oluşan DM veya telefon sıraları tarihe karışıyor. Yüzlerce kullanıcıya aynı milisaniyede kusursuz cevap verin."
+  },
+  {
+    icon: <i className="fas fa-shield-halved text-blue-400"></i>,
+    title: "KVKK Uyumlu Veri Güvenliği",
+    description: "Kurumsal seviyede uçtan uca şifreleme ve gelişmiş erişim standartlarıyla ticari verilerinizin güvenliği ve mülkiyeti daima sizde kalır."
+  }
+];
 export const INTEGRATIONS = [];
 export const FAQS = [];
 export const PRESS_MENTIONS = [];

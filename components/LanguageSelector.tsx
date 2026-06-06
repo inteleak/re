@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const FLAGS = [
-  { code: "en", flag: "🇬🇧", label: "English" },
-  { code: "es", flag: "🇪🇸", label: "Español" },
-  { code: "ar", flag: "🇸🇦", label: "العربية" },
-  { code: "fr", flag: "🇫🇷", label: "Français" },
-  { code: "pl", flag: "🇵🇱", label: "Polski" },
-  { code: "tr", flag: "🇹🇷", label: "Türkçe" },
+  { code: "tr", flagCode: "tr", label: "Türkçe" },
+  { code: "en", flagCode: "gb", label: "English" },
+  { code: "es", flagCode: "es", label: "Español" },
+  { code: "ar", flagCode: "sa", label: "العربية" },
+  { code: "fr", flagCode: "fr", label: "Français" },
+  { code: "pl", flagCode: "pl", label: "Polski" },
 ];
 
 const COUNTRY_TO_LANG: Record<string, string> = {
@@ -147,15 +147,28 @@ const LanguageSelector: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center space-x-2 bg-slate-950/30 rounded-full px-4 py-2 border border-white/10 shadow-inner backdrop-blur-sm">
+    <div className="flex items-center space-x-1.5 bg-slate-50 border border-slate-100 rounded-full p-1 shadow-inner backdrop-blur-sm">
       {FLAGS.map((lang) => (
         <button
           key={lang.code}
           onClick={() => setLanguage(lang.code)}
-          className={`text-xl md:text-2xl hover:scale-110 hover:-translate-y-1 transition-all duration-300 ${currentLang === lang.code ? "opacity-100 ring-2 ring-blue-400 rounded-full shadow-[0_0_15px_rgba(96,165,250,0.4)] bg-white/5" : "opacity-40 hover:opacity-100 drop-shadow-md"} mx-0.5`}
+          className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 ${
+            currentLang === lang.code
+              ? "bg-white shadow-md border border-slate-200/60 scale-115 ring-2 ring-blue-500/10 z-10"
+              : "opacity-55 hover:opacity-100 hover:scale-115"
+          }`}
           title={lang.label}
-        >
-          {lang.flag}
+         >
+          <img
+            src={`https://flagcdn.com/w40/${lang.flagCode}.png`}
+            alt={lang.label}
+            className="w-5 h-5 md:w-5.5 md:h-5.5 rounded-full object-cover shadow-inner border border-slate-200/35 group-hover:border-slate-300/60"
+            referrerPolicy="no-referrer"
+          />
+          {/* Custom elegant tooltip */}
+          <span className="pointer-events-none absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 bg-slate-900/95 text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 border border-white/5">
+            {lang.label}
+          </span>
         </button>
       ))}
     </div>

@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       <header className="sticky top-0 z-50 w-full shadow-2xl">
         {/* Top Bar */}
         <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white/70 border-b border-white/5">
-          <div className="container mx-auto px-4 md:px-8 py-2 flex justify-between items-center h-10">
+          <div className="container mx-auto px-4 md:px-8 py-1.5 flex justify-between items-center h-10">
             <div className="flex items-center text-[10px] md:text-[11px] font-bold tracking-widest">
               <span className="relative flex h-2 w-2 mr-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
           <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
           
-          <div className="container mx-auto px-4 md:px-8 py-2 md:py-3 flex justify-between items-center gap-4 md:gap-12 relative z-10">
+          <div className="container mx-auto px-4 md:px-8 py-1.5 md:py-3 flex justify-between items-center gap-4 md:gap-12 relative z-10">
             {/* Logo - Redesigned as Agency */}
             <Link to="/" className="flex items-center group shrink-0" onClick={() => setIsMenuOpen(false)}>
               <div className="flex flex-col items-center">
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
                 <input 
                   type="text" 
                   placeholder="Yapay zeka çözümleri arasında arama yapın..." 
-                  className="w-full bg-slate-100/50 border border-slate-200 rounded-2xl py-2 px-6 pr-14 focus:outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all text-slate-600 font-medium placeholder:text-slate-400 group-hover:bg-slate-50"
+                  className="w-full bg-slate-100/50 border border-slate-200 rounded-2xl py-1.5 px-6 pr-14 focus:outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all text-slate-600 font-medium placeholder:text-slate-400 group-hover:bg-slate-50"
                 />
                 <button className="absolute right-1 top-1/2 -translate-y-1/2 bg-slate-900 text-white w-8 h-8 flex items-center justify-center rounded-xl hover:bg-blue-600 transition-all shadow-lg active:scale-95">
                   <i className="fas fa-search text-sm"></i>
@@ -126,46 +126,54 @@ const Header: React.FC = () => {
                  onMouseEnter={() => setIsCategoriesOpen(true)}
                  onMouseLeave={() => { setIsCategoriesOpen(false); setHoveredCategory(null); }}>
               <button 
-                className="bg-blue-600 h-full px-8 flex items-center space-x-3 font-bold hover:bg-blue-700 transition-all uppercase tracking-[0.15em] text-xs"
+                className="relative bg-gradient-to-r from-blue-700 to-blue-600 h-full px-8 flex items-center space-x-3 font-bold hover:from-blue-600 hover:to-blue-500 transition-all uppercase tracking-[0.15em] text-xs shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] z-10 overflow-hidden group"
               >
-                <i className="fas fa-bars text-sm"></i>
-                <span>TÜM KATEGORİLER</span>
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <i className="fas fa-bars text-sm group-hover:rotate-90 transition-transform duration-300"></i>
+                <span className="relative z-10">TÜM KATEGORİLER</span>
               </button>
 
               {/* Categories Dropdown Container */}
               {isCategoriesOpen && (
-                <div className="absolute top-full left-0 flex z-[100] mt-[1px] shadow-[0_20px_50px_rgba(0,0,0,0.2)] animate-in fade-in zoom-in-95 duration-200 origin-top">
+                <div className="absolute top-full left-0 flex z-[100] mt-[1px] shadow-[0_30px_60px_rgba(0,0,0,0.15)] animate-in fade-in slide-in-from-top-2 duration-300 origin-top-left rounded-bl-3xl rounded-br-3xl">
                   {/* Primary Categories */}
-                  <div className="w-56 bg-gradient-to-b from-white to-slate-50 overflow-hidden py-1.5 border-r border-slate-100 flex flex-col rounded-bl-2xl">
+                  <div className="w-64 bg-gradient-to-b from-white via-white to-slate-50/90 overflow-hidden py-1.5 border border-slate-100 flex flex-col rounded-bl-2xl relative shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+                    <div className="absolute inset-0 bg-white/40 mask-image:linear-gradient(to_bottom,white,transparent)"></div>
+                    <div className="relative z-10">
                     {NAV_LINKS.map((link) => (
                       <div 
                         key={link.name} 
-                        className={`group px-4 py-1.5 cursor-pointer transition-all duration-300 border-l-4 ${hoveredCategory === link.name ? 'bg-blue-50/80 border-blue-600 shadow-sm' : 'hover:bg-slate-100/50 border-transparent'}`}
+                        className={`group px-4 py-1 cursor-pointer transition-all duration-300 mx-2 rounded-xl mb-0.5 border-b border-white/40 last:border-b-0 ${hoveredCategory === link.name ? 'bg-gradient-to-r from-blue-50 to-slate-50 shadow-[0_2px_10px_rgba(37,99,235,0.05)] border border-blue-100/50' : 'hover:bg-slate-50 border border-transparent'}`}
                         onMouseEnter={() => setHoveredCategory(link.name)}
                       >
                         <Link 
                           to={link.path !== '#' ? link.path : ''} 
                           onClick={(e) => { if(link.path === '#') e.preventDefault(); setIsCategoriesOpen(false); }}
-                          className={`flex items-center justify-between font-extrabold text-[10px] uppercase tracking-wider transition-colors ${hoveredCategory === link.name ? 'text-blue-700' : 'text-slate-800'}`}
+                          className={`flex items-center justify-between font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider transition-colors ${hoveredCategory === link.name ? 'text-blue-700' : 'text-slate-700'}`}
                         >
                           <span className="flex items-center">
-                             <i className={`fas fa-circle text-[4px] mr-2.5 transition-transform ${hoveredCategory === link.name ? 'scale-150 text-blue-600' : 'text-slate-300'}`}></i>
+                             <div className={`w-5 h-5 rounded flex items-center justify-center mr-3 transition-colors ${hoveredCategory === link.name ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'}`}>
+                                <i className="fas fa-layer-group text-[10px]"></i>
+                             </div>
                              {link.name}
                           </span>
-                          {link.children && <i className={`fas fa-chevron-right text-[8px] transition-transform ${hoveredCategory === link.name ? 'text-blue-600 translate-x-1' : 'text-slate-300'}`}></i>}
+                          {link.children && <i className={`fas fa-chevron-right text-[9px] transition-transform ${hoveredCategory === link.name ? 'text-blue-600 translate-x-1' : 'text-slate-300'}`}></i>}
                         </Link>
                       </div>
                     ))}
+                    </div>
                   </div>
 
                   {/* Secondary Submenu */}
                   {hoveredCategory && NAV_LINKS.find(l => l.name === hoveredCategory)?.children && (
-                    <div className="w-[240px] bg-gradient-to-br from-slate-50 to-slate-100 rounded-br-2xl py-3 px-4 border-l border-slate-200 animate-in fade-in slide-in-from-left-4 duration-300 max-h-[85vh]">
-                      <div className="mb-3 flex items-center justify-between">
-                        <span className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] bg-blue-100/50 px-2 py-1 rounded-full">{hoveredCategory}</span>
-                        <div className="h-[1px] flex-1 bg-slate-200 ml-2"></div>
+                    <div className="w-[300px] bg-gradient-to-r from-slate-50 via-white to-white rounded-br-2xl py-3 px-5 border-l border-slate-200 animate-in fade-in slide-in-from-left-4 duration-300 max-h-[90vh] relative shadow-[inset_1px_0_10px_rgba(0,0,0,0.02)]">
+                      <div className="absolute inset-0 bg-white/60 backdrop-blur-3xl rounded-br-3xl pointer-events-none"></div>
+                      <div className="relative z-10">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-[10px] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600 uppercase tracking-[0.2em]">{hoveredCategory}</span>
+                        <div className="h-[1px] flex-1 bg-gradient-to-r from-blue-200 to-transparent ml-3"></div>
                       </div>
-                      <div className="grid grid-cols-1 gap-0.5 relative" onMouseLeave={() => setHoveredSubCategory(null)}>
+                      <div className="grid grid-cols-1 gap-1 relative" onMouseLeave={() => setHoveredSubCategory(null)}>
                         {NAV_LINKS.find(l => l.name === hoveredCategory)?.children?.map((child) => (
                           <div 
                             key={child.name} 
@@ -173,32 +181,44 @@ const Header: React.FC = () => {
                             onMouseEnter={() => setHoveredSubCategory(child.name)}
                           >
                             <Link 
-                              to={child.path} 
-                              onClick={() => setIsCategoriesOpen(false)}
-                              className="bg-white flex items-center justify-between px-3 py-1.5 rounded-lg hover:bg-gradient-to-r hover:from-slate-900 hover:to-slate-800 text-slate-700 hover:text-white font-bold text-[10px] uppercase tracking-wide transition-all duration-300 shadow-sm border border-slate-100 hover:border-transparent hover:shadow-xl hover:-translate-y-0.5"
-                            >
-                              <span>{child.name}</span>
-                              {child.children ? (
-                                <i className="fas fa-chevron-right text-[8px] transition-transform text-slate-400 group-hover/sub:text-white group-hover/sub:translate-x-1"></i>
-                              ) : (
-                                <i className="fas fa-arrow-right text-[8px] opacity-0 group-hover/sub:opacity-100 -translate-x-2 group-hover/sub:translate-x-0 transition-all text-blue-400 group-hover/sub:text-white"></i>
-                              )}
-                            </Link>
+                                  to={child.path} 
+                                  onClick={() => setIsCategoriesOpen(false)}
+                                  className="bg-white flex items-center gap-3 justify-between px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 text-slate-700 hover:text-white font-bold text-[10px] sm:text-[11px] border border-slate-100/50 shadow-sm uppercase tracking-wide transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:border-transparent hover:shadow-[0_8px_20px_rgba(37,99,235,0.2)] hover:-translate-y-0.5"
+                                >
+                                  <span>{child.name}</span>
+                                  {child.children ? (
+                                    <i className="fas fa-chevron-right text-[9px] transition-transform text-slate-400 group-hover/sub:text-white group-hover/sub:translate-x-1"></i>
+                                  ) : (
+                                    <i className="fas fa-arrow-right text-[9px] opacity-0 group-hover/sub:opacity-100 -translate-x-2 group-hover/sub:translate-x-0 transition-all opacity-100 text-blue-300 group-hover/sub:text-white"></i>
+                                  )}
+                                </Link>
 
                             {/* 3rd Level Submenu */}
                             {child.children && hoveredSubCategory === child.name && (
-                               <div className="absolute left-[95%] top-0 ml-1 w-48 bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] py-2 border border-slate-100 z-[110] animate-in slide-in-from-left-2 fade-in duration-200">
-                                  <div className="absolute -left-2 top-0 bottom-0 w-2"></div> {/* Hover bridge */}
-                                  {child.children.map(subChild => (
-                                     <Link
-                                       key={subChild.name}
-                                       to={subChild.path}
-                                       onClick={() => setIsCategoriesOpen(false)}
-                                       className="block px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600"
-                                     >
-                                       {subChild.name}
-                                     </Link>
-                                  ))}
+                               <div className="absolute left-[99%] top-0 ml-3 w-[560px] bg-gradient-to-b from-slate-950 via-slate-900 to-black rounded-3xl shadow-[0_30px_70px_rgba(0,0,0,0.65)] p-4 border border-blue-500/25 z-[110] animate-in slide-in-from-left-3 fade-in duration-300 backdrop-blur-3xl">
+                                  <div className="absolute -left-4 top-0 bottom-0 w-4"></div> {/* Hover bridge */}
+                                  <div className="mb-3 px-3 pb-2 border-b border-white/5 flex items-center justify-between">
+                                    <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">{child.name}</span>
+                                    <span className="text-[9px] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 uppercase tracking-widest">Entegre Çözümler</span>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-2">
+                                      {child.children.map(subChild => (
+                                         <Link
+                                           key={subChild.name}
+                                           to={subChild.path}
+                                           onClick={() => setIsCategoriesOpen(false)}
+                                           className="group relative flex items-center gap-3 px-3 py-3 rounded-2xl text-slate-300 hover:text-white bg-slate-900/40 hover:bg-white/[0.08] border border-white/5 hover:border-blue-500/25 transition-all duration-300 overflow-hidden"
+                                         >
+                                           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                           <div className="w-6 h-6 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/10 group-hover:bg-blue-500/20 group-hover:border-blue-400/30 transition-all shrink-0">
+                                             <i className="fas fa-chevron-right text-[8px] text-blue-400 group-hover:text-blue-300 transition-transform group-hover:translate-x-0.5"></i>
+                                           </div>
+                                           <span className="relative z-10 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider whitespace-normal leading-tight text-left">
+                                             {subChild.name}
+                                           </span>
+                                         </Link>
+                                      ))}
+                                  </div>
                                </div>
                             )}
                           </div>
@@ -206,13 +226,14 @@ const Header: React.FC = () => {
                       </div>
                       
                       {/* Submenu Footer Decorative Element */}
-                      <div className="mt-4 pt-3 border-t border-slate-50 flex items-center justify-between text-[8px] font-bold text-slate-400 tracking-widest uppercase">
-                         <span>Premium Solutions</span>
-                         <div className="flex space-x-1">
-                            <div className="w-1 h-1 rounded-full bg-blue-400"></div>
-                            <div className="w-1 h-1 rounded-full bg-blue-300"></div>
-                            <div className="w-1 h-1 rounded-full bg-blue-200"></div>
-                         </div>
+                          <div className="mt-6 pt-4 border-t border-slate-200/50 flex items-center justify-between text-[8px] font-bold text-slate-400 tracking-widest uppercase">
+                             <span className="flex items-center gap-1.5"><i className="fas fa-gem text-blue-400"></i> Premium Seçenekler</span>
+                             <div className="flex space-x-1.5">
+                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500/80"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400/60"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-purple-300/40"></div>
+                             </div>
+                          </div>
                       </div>
                     </div>
                   )}
@@ -228,9 +249,9 @@ const Header: React.FC = () => {
                   <i className="fas fa-chevron-down ml-1.5 text-[8px] opacity-70"></i>
                 </Link>
                 <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="bg-white rounded-xl shadow-xl w-64 py-2 border border-slate-100 flex flex-col mt-[-5px]">
+                  <div className="bg-white rounded-xl shadow-xl w-64 py-1.5 border border-slate-100 flex flex-col mt-[-5px]">
                     <Link to="/yapay-zeka-otomasyonlari" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Yapay Zeka Otomasyon</Link>
-                    <Link to="/yapay-zeka-uygulamalar" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Sektör Yazılımlarımız (CRM)</Link>
+                    <Link to="/yapay-zeka-uygulamalar" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Sektör Çözümlerimiz</Link>
                     <Link to="/yapay-zeka-produksiyon" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Yapay Zeka Prodüksiyon</Link>
                     <Link to="/web-yazilimlari" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Web Yazılım</Link>
                   </div>
@@ -242,7 +263,7 @@ const Header: React.FC = () => {
                   <i className="fas fa-chevron-down ml-1.5 text-[8px] opacity-70"></i>
                 </Link>
                 <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="bg-white rounded-xl shadow-xl w-56 py-2 border border-slate-100 flex flex-col mt-[-5px]">
+                  <div className="bg-white rounded-xl shadow-xl w-56 py-1.5 border border-slate-100 flex flex-col mt-[-5px]">
                     <Link to="/projelerimiz/mortanas-create" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Create</Link>
                     <Link to="/projelerimiz/mortanas-journal" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Journal</Link>
                     <Link to="/projelerimiz/mortanas-social-agent" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Social Agent</Link>
@@ -258,7 +279,7 @@ const Header: React.FC = () => {
                   <i className="fas fa-chevron-down ml-1.5 text-[8px] opacity-70"></i>
                 </Link>
                 <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="bg-white rounded-xl shadow-xl w-56 py-2 border border-slate-100 flex flex-col mt-[-5px]">
+                  <div className="bg-white rounded-xl shadow-xl w-56 py-1.5 border border-slate-100 flex flex-col mt-[-5px]">
                     <Link to="/paketler/media" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Media</Link>
                     <Link to="/paketler/digital" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Digital</Link>
                     <Link to="/paketler/flow" className="px-5 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 text-[11px] font-extrabold uppercase tracking-wider transition-colors border-l-2 border-transparent hover:border-blue-600">Mortanas Flow</Link>
@@ -276,7 +297,7 @@ const Header: React.FC = () => {
         {/* Mobile Menu Expanded */}
         <div className={`md:hidden absolute top-full left-0 w-full bg-white shadow-2xl transition-all duration-300 ease-in-out border-t border-slate-100 ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} overflow-hidden z-40`}>
           <div className="p-6 flex flex-col space-y-2">
-            <div className="mb-4">
+            <div className="mb-2">
               <input 
                 type="text" 
                 placeholder="Arama yapın..." 
@@ -309,7 +330,7 @@ const Header: React.FC = () => {
                 
                 {/* Mobile Submenu */}
                 {link.children && activeMobileSubmenu === link.name && (
-                  <div className="pl-4 pb-4 flex flex-col space-y-3 bg-slate-50 rounded-xl mb-4 p-4 mt-1">
+                  <div className="pl-4 pb-4 flex flex-col space-y-3 bg-slate-50 rounded-xl mb-2 p-4 mt-1">
                     {link.children.map((child) => (
                       <div key={child.name} className="flex flex-col">
                          <Link 
